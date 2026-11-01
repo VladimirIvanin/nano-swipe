@@ -69,7 +69,14 @@ test('updated event ordering and options in mounted match Splide', async ({ page
   const results = [];
   for (const original of [true, false]) {
     await setup(page, original, { pagination: false });
-    await page.evaluate(() => { log.length = 0; slider.options = { perPage: 3, drag: false }; });
+    await page.evaluate(() => {
+      log.length = 0;
+      slider.on('updated.payload', options => {
+        window.updatedPayload = { same: options === slider.options, perPage: options.perPage, drag: options.drag };
+      });
+      slider.options = { perPage: 3, drag: false };
+    });
+    expect(await page.evaluate(() => updatedPayload)).toEqual({ same: true, perPage: 3, drag: false });
     results.push(await page.evaluate(() => log));
   }
   expect(results[1]).toEqual(results[0]);
@@ -121,10 +128,13 @@ test('dynamic options, list replacement, refresh and destroy', async ({ page }) 
 
 test('breakpoint destroy and automatic remount', async ({ page }) => {
   await setup(page, false, { breakpoints: { 600: { destroy: true } } });
+  await page.evaluate(() => slider.Components.Elements.list.classList.add('grid-list'));
   await page.setViewportSize({ width: 390, height: 800 });
-  await expect(page.locator('.splide')).not.toHaveClass(/is-initialized/);
+  await expect.poll(() => page.evaluate(() => slider.state.is(Splide.STATES.DESTROYED))).toBe(true);
+  await expect(page.locator('.splide')).toBeVisible();
+  await expect(page.locator('.splide__list')).toHaveClass(/grid-list/);
   await page.setViewportSize({ width: 800, height: 800 });
-  await expect(page.locator('.splide')).toHaveClass(/is-initialized/);
+  await expect.poll(() => page.evaluate(() => slider.state.is(Splide.STATES.IDLE))).toBe(true);
 });
 
 test('pointer drag, cancellation and link clicks', async ({ page }) => {

@@ -120,6 +120,7 @@ test('tvist loop destroy — repeated remount keeps originals and clone count', 
 
 test('tvist loop rapid navigation — clicks finish transitions and retain viewport coverage', async ({ browser }) => {
   await compare(browser, { type: 'loop', perPage: 2, perMove: 1, gap: 16, speed: 80 }, async page => {
+    await page.evaluate(() => { window.acceptedMoves = []; slider.on('move', (next, old) => acceptedMoves.push([next, old])); });
     for (let i = 0; i < 12; i++) {
       await page.evaluate(() => slider.root.querySelector('.splide__arrow--prev').click());
       await page.waitForTimeout(15);
@@ -139,6 +140,9 @@ test('tvist loop rapid navigation — clicks finish transitions and retain viewp
       expect(holes).toEqual([]);
     }
     await page.waitForTimeout(120);
+    const moves = await page.evaluate(() => acceptedMoves);
+    expect(moves.length).toBeGreaterThan(0);
+    for (const [next, old] of moves) expect(next).toBe((old + 3) % 4);
     // Exact accepted click count is scheduler-dependent. Check stable geometry at a fixed final index.
     await page.evaluate(() => slider.go(2));
     await page.waitForTimeout(120);

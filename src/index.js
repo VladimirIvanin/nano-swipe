@@ -60,6 +60,7 @@ export default class Splide {
     for (const point of Object.keys(resolved.breakpoints || {}).map(Number).sort((a, b) => min ? a - b : b - a)) {
       if (matchMedia(`(${min ? 'min' : 'max'}-width: ${point}px)`).matches) merge(resolved, this._base.breakpoints[point]);
     }
+    if (!(Number(resolved.perPage) > 0)) resolved.perPage = 1;
     for (const key of Object.keys(this._options)) delete this._options[key];
     merge(this._options, resolved);
   }
@@ -115,7 +116,7 @@ export default class Splide {
       window.addEventListener('resize', this._resize);
       this._watching = true;
     }
-    if (this.options.destroy) return this;
+    if (this.options.destroy) return this.destroy(this.options.destroy === 'completely');
     const track = this._own('.splide__track');
     const list = track?.querySelector('.splide__list');
     if (!track || !list) throw new Error('[splide] A track/list element is missing.');
@@ -253,7 +254,7 @@ export default class Splide {
         dest += (command === '+' ? 1 : -1) * (Number(amount) || 1);
         if (!this.is('loop') && this.options.rewind && (dest < 0 && this.index === 0 || dest > this._end() && this.index === this._end())) dest = dest < 0 ? this._end() : 0;
       }
-      if (command === '>') dest = amount ? Number(amount) * this.options.perPage : this._adjacent(false);
+      if (command === '>') dest = amount ? Number(amount) * (this.options.focus !== undefined ? 1 : this.options.perPage) : this._adjacent(false);
       if (command === '<') dest = this._adjacent(true);
       if (dest === -1 && (command === '>' || command === '<') && !this.is('loop')) return this;
     }
@@ -261,11 +262,21 @@ export default class Splide {
     const next = this.is('loop') ? ((dest % this.length) + this.length) % this.length : dest;
     if (next === this.index) return this;
     clearTimeout(this._transitionTimer);
+    const { list } = this.Components.Elements;
+    if (this.is('loop') && this._status === states.MOVING) {
+      const shift = this._position(this.index) - this._position(this._dest);
+      if (shift) {
+        const position = new DOMMatrix(getComputedStyle(list).transform).m41;
+        list.style.transition = 'none';
+        list.style.transform = `translateX(${position + shift}px)`;
+        list.getBoundingClientRect();
+      }
+    }
     const old = this.index;
+    this._dest = dest;
     this._index = next;
     this._status = states.MOVING;
     this.emit('move', next, old, dest);
-    const { list } = this.Components.Elements;
     list.style.transition = `transform ${this.options.speed}ms ${this.options.easing}`;
     list.style.transform = `translateX(${this._position(dest)}px)`;
     const complete = () => {
@@ -275,10 +286,10 @@ export default class Splide {
       this._status = states.IDLE;
       this._update();
       this.emit('moved', next, old, dest);
-      this._autoplay();
     };
     if (this.options.speed) this._transitionTimer = setTimeout(complete, this.options.speed);
     else complete();
+    this._autoplay();
     return this;
   }
 
@@ -348,7 +359,7 @@ export default class Splide {
       if (!hidden && this.options.slideFocus) slide.setAttribute('tabindex', '0'); else slide.removeAttribute('tabindex');
       slide.querySelectorAll(this.options.focusableNodes).forEach(node => {
         this._save(node);
-        if (hidden) node.setAttribute('tabindex', '-1'); else node.removeAttribute('tabindex');
+        if (hidden || node.closest('.splide__slide[aria-hidden="true"]')) node.setAttribute('tabindex', '-1'); else node.removeAttribute('tabindex');
       });
       if (slide.classList.contains('is-visible') !== visible) {
         slide.classList.toggle('is-visible', visible);
@@ -412,7 +423,15 @@ export default class Splide {
       if (pointer.active) {
         this.emit('dragged');
         const old = this.index;
-        if (event.type !== 'pointercancel' && Math.abs(pointer.delta) > 20) this.go(pointer.delta < 0 ? '>' : '<');
+        if (event.type !== 'pointercancel' && Math.abs(pointer.delta) > 20) {
+          const target = this._position(old) + pointer.delta;
+          let nearest = old, distance = Infinity;
+          for (const item of this._slides) {
+            const delta = Math.abs(this._position(item.index) - target);
+            if (delta < distance) { distance = delta; nearest = item.index; }
+          }
+          this.go(nearest === old ? (pointer.delta < 0 ? '>' : '<') : nearest);
+        }
         if (old === this.index) this._layout();
         setTimeout(() => { this._suppressClick = false; }, 0);
         this._autoplay();
@@ -445,11 +464,18 @@ export default class Splide {
     this._pagination?.remove(); this._generatedArrows?.remove();
     for (const [element, attributes] of this._saved) {
       for (const name of ['id', 'class', 'style', 'tabindex', 'aria-hidden', 'aria-controls', 'aria-label', 'aria-current', 'disabled']) {
+        if (name === 'class') {
+          for (const token of ['splide--slide', 'splide--loop', 'splide--ltr', 'splide--draggable', 'is-initialized', 'is-active', 'is-visible', 'is-prev', 'is-next']) {
+            element.classList.toggle(token, (attributes.get(name) || '').split(' ').includes(token));
+          }
+          continue;
+        }
         if (attributes.has(name)) element.setAttribute(name, attributes.get(name));
         else element.removeAttribute(name);
       }
     }
     this._saved.clear();
+    this.root.classList.add('is-initialized');
     this._mounted = false; this._status = states.DESTROYED;
     this._arrowButtons = null; this._arrowsMounted = false; this._pointer = null;
     if (completely) { window.removeEventListener('resize', this._resize); this._watching = false; }
