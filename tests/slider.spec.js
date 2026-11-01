@@ -77,6 +77,7 @@ test('updated event ordering and options in mounted match Splide', async ({ page
 
 test('autoplay pauses on hover and resumes', async ({ page }) => {
   await setup(page, false, { autoplay: true, interval: 100, rewind: true });
+  await page.mouse.move(799, 799);
   await expect.poll(() => page.evaluate(() => slider.index)).not.toBe(0);
   await page.mouse.move(200, 60);
   const paused = await page.evaluate(() => slider.index);

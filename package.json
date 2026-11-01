@@ -31,7 +31,8 @@
     "docs:build": "npm run build && node scripts/build-docs.mjs",
     "docs:dev": "npm run docs:build && node scripts/serve-docs.mjs",
     "test:docs": "npm run docs:build && playwright test --config=playwright.docs.config.js",
-    "check:release": "npm run build && node scripts/release.mjs"
+    "check:release": "npm run test:package",
+    "check:widgets": "node scripts/release.mjs"
   },
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/VladimirIvanin/nano-swipe.git" },

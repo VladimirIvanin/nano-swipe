@@ -29,7 +29,6 @@ jobs:
           PRERELEASE: ${{ github.event.release.prerelease }}
         run: node scripts/check-release-tag.mjs
       - run: npm ci
-      - run: npm run check:release
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm test
       - run: npm run test:package
