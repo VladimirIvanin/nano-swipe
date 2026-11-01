@@ -1,0 +1,13 @@
+node_modules/
+test-results/
+playwright-report/
+*-run.json
+*.log
+.docs-site/
+dist/
+browser-build/
+.cache/
+*.tgz
+reports/tests.json
+reports/docs-tests.json
+reports/*.png

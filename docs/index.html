@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nano Swipe — компактный горизонтальный слайдер на JavaScript. Живые примеры, подключение, настройки и методы.">
+  <meta name="theme-color" content="#f7faf7">
+  <title>Nano Swipe — примеры и документация</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2322674d'/%3E%3Cpath d='M8 23V10h4v2c4-5 12-3 12 3v8h-4v-8c0-4-8-3-8 2v6z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./nano-swipe.css">
+  <link rel="stylesheet" href="./docs.css">
+  <script defer src="./nano-swipe.js"></script>
+  <script defer src="./docs.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#examples">К примерам</a>
+  <header class="header">
+    <a class="brand" href="#top" aria-label="Nano Swipe, в начало">nano<span>swipe</span><svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><path d="M2 9h17m-6-6 6 6-6 6"/></svg></a>
+    <nav aria-label="Основная навигация">
+      <a href="#examples">Примеры</a><a href="#usage">Подключение</a><a href="#options">API</a>
+      <a class="github" href="https://github.com/VladimirIvanin/nano-swipe">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="intro-top"><span class="version">v<span data-version>0.1.0</span></span><span>Экспериментальная версия</span></div>
+      <h1 id="intro-title">nano swipe<span class="title-dot">.</span></h1>
+      <div class="intro-bottom">
+        <p>Компактный слайдер на JavaScript.<br>Свайп, loop и адаптивность в нескольких килобайтах.</p>
+        <a class="button primary" href="#usage">Начать работу <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="facts">
+        <div><strong data-js-size>—</strong><span>JavaScript · gzip</span></div>
+        <div><strong data-css-size>—</strong><span>CSS · gzip</span></div>
+        <div><strong>0</strong><span>зависимостей в браузере</span></div>
+        <p>Примеры работают на той же сборке, которую вы подключаете к странице.</p>
+      </div>
+    </section>
+    <div class="documentation">
+      <aside class="sidebar">
+        <nav aria-label="Разделы документации">
+          <a href="#examples">Примеры</a>
+          <a class="sub" href="#single">Один слайд</a><a class="sub" href="#multiple">Несколько слайдов</a>
+          <a class="sub" href="#responsive">Адаптивность</a><a class="sub" href="#center">Центрирование</a>
+          <a class="sub" href="#variable">Разная ширина</a><a class="sub" href="#autoplay">Автопрокрутка</a>
+          <a class="sub" href="#dynamic">Добавление и удаление</a><a class="sub" href="#lifecycle">Destroy и mount</a>
+          <a href="#usage">Подключение</a><a href="#options">Настройки</a><a href="#methods">Методы</a>
+          <a href="#events">События</a>
+        </nav>
+        <a class="sidebar-download" href="./nano-swipe.js" download>Скачать JS <span aria-hidden="true">↓</span></a>
+      </aside>
+      <div class="content">
+        <section id="examples" class="examples" aria-labelledby="examples-title">
+          <div class="section-heading"><h2 id="examples-title">Попробуйте сами</h2><span>01—08</span></div>
+          <p class="section-lead">Потяните слайд мышью, проведите пальцем или нажмите стрелку. Под каждым примером — его рабочий код.</p>
+          <div id="demo-list"></div>
+        </section>
+        <section id="usage" class="reference-section">
+          <div class="section-heading"><h2>Подключение</h2><a href="./nano-swipe.css" download>Скачать CSS ↓</a></div>
+          <p>Добавьте базовые стили и браузерную сборку. Файлы можно скачать с этой страницы и разместить среди ресурсов темы.</p>
+          <div data-code="install"></div>
+          <h3>Разметка</h3>
+          <p>Один корневой элемент, трек, список и слайды. Для существующего виджета сохраняйте его классы и оформление.</p>
+          <div data-code="markup"></div>
+          <h3>Инициализация</h3>
+          <p>Вызывайте конструктор после появления разметки в DOM. Слушатели <code>mounted</code> регистрируйте до <code>mount()</code>.</p>
+          <div data-code="init"></div>
+          <h3>ES-модуль</h3>
+          <p>ESM-сборка экспортирует тот же конструктор. CSS подключается отдельно.</p>
+          <div data-code="esm"></div>
+        </section>
+        <section id="options" class="reference-section">
+          <div class="section-heading"><h2>Настройки</h2><span>new Splide(root, options)</span></div>
+          <p>Значения в столбце «По умолчанию» относятся к Nano Swipe. <code>breakpoints</code> используют ширину окна. Новые значения можно передать через <code>slider.options = { ... }</code>.</p>
+          <div class="table-scroll"><table><caption class="sr-only">Поддержанные настройки Nano Swipe</caption><thead><tr><th>Настройка</th><th>По умолчанию</th><th>Поведение</th></tr></thead><tbody id="options-body"></tbody></table></div>
+          <h3>Вместе с зум-галереей</h3>
+          <p>Передайте в <code>noDrag</code> селектор активной сенсорной поверхности. Проверяется элемент, на котором начался жест. Чтобы исключить и обёртку, и вложенные элементы, перечислите оба селектора.</p>
+          <div data-code="noDrag"></div>
+          <p>Настройка действует и на копии слайдов в loop. Подключайте зум к каждой обёртке, включая клоны. При обновлении списка подключайте новые обёртки и освобождайте удалённые через API вашей галереи. Для управления нативными сенсорными жестами галерея задаёт собственный <code>touch-action</code>.</p>
+          <h3>Общие значения и data-атрибут</h3>
+          <p><code>Splide.defaults</code> задаёт настройки будущих экземпляров. Значения <code>data-splide</code> имеют приоритет над настройками конструктора.</p>
+          <div data-code="defaults"></div>
+        </section>
+        <section id="methods" class="reference-section">
+          <div class="section-heading"><h2>Методы</h2><span>slider</span></div>
+          <p>Методы ниже возвращают экземпляр и поддерживают цепочки вызовов. <code>is(type)</code> возвращает логическое значение.</p>
+          <div class="table-scroll"><table><caption class="sr-only">Методы экземпляра</caption><thead><tr><th>Метод</th><th>Действие</th></tr></thead><tbody id="methods-body"></tbody></table></div>
+          <h3>Свойства</h3>
+          <p><code>index</code> — текущий индекс с нуля. <code>length</code> — количество оригинальных слайдов. <code>root</code> — корневой DOM-элемент. <code>options</code> — действующие настройки.</p>
+          <p><code>Components.Elements</code> предоставляет <code>root</code>, <code>track</code>, <code>list</code> и массив оригинальных <code>slides</code>. После изменения содержимого списка вызывайте <code>refresh()</code>.</p>
+        </section>
+        <section id="events" class="reference-section">
+          <div class="section-heading"><h2>События</h2><span>on · off · emit</span></div>
+          <p>Имена можно разделять пробелом или передавать массивом. Для выборочного отключения обработчиков используйте namespace, например <code>move.counter</code>.</p>
+          <div data-code="events"></div>
+          <div class="table-scroll"><table><caption class="sr-only">События и аргументы</caption><thead><tr><th>Событие</th><th>Аргументы</th><th>Когда вызывается</th></tr></thead><tbody id="events-body"></tbody></table></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer><a class="brand" href="#top">nano<span>swipe</span></a><p>Документация построена вокруг живых примеров.<br>Структура вдохновлена <a href="https://kenwheeler.github.io/slick/">Slick</a>.</p><a href="https://github.com/VladimirIvanin/nano-swipe">GitHub ↗</a></footer>
+  <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>

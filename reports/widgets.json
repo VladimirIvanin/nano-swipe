@@ -1,0 +1,3363 @@
+{
+  "root": "D:/widget_types",
+  "widgets": [
+    {
+      "widget": "system_widget_v4_article_previews_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n      perPage: getSlidesPerVew(slider_block, slide_min_width, slide_gap),\n      gap: slide_gap,\n      perMove: 1\n    })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_2",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_4",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_5",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_6",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_7",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_article_products_8",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_banner_list_14",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n    perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n    gap: slide_gap,\n    perMove: 1\n  })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_banner_list_17",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n    perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n    gap: slide_gap,\n    perMove: 1\n  })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_banner_list_27",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n      perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n      gap: slide_gap,\n      perMove: 1\n    })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_banner_list_3",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n    perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n    gap: slide_gap,\n    perMove: 1\n  })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_cart_5",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(tabsSlider[0], {\n      autoWidth: true,\n      gap: '1rem',\n      perMove: 1,\n      pagination: false,\n    })"
+      ],
+      "options": [
+        "autoWidth",
+        "gap",
+        "pagination",
+        "perMove"
+      ],
+      "events": [],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_catalog_6",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_catalog_7",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_collections_on_index_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_collections_on_index_3",
+      "libraries": [
+        "splide-grid",
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            },\n            destroy: true\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_collections_on_index_4",
+      "libraries": [
+        "splide-grid",
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            },\n            destroy: true\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_header_12",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n        type: \"loop\",\n        rewind: true,\n        arrows: false,\n        gap: 1,\n        pagination: false,\n        pauseOnHover: false,\n        autoplay: !!is_autoplay,\n        interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000,\n      })"
+      ],
+      "options": [
+        "arrows",
+        "autoplay",
+        "gap",
+        "interval",
+        "pagination",
+        "pauseOnHover",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "move",
+        "moved",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_lite_catalog_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide($(slider_block)[0], {\n      perPage: 1,\n      gap: 0,\n      perMove: 1,\n    })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [],
+      "methods": [
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_lite_product_1",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide($(slider_block)[0], {\n    perPage: 1,\n    gap: 0,\n    perMove: 1,\n  })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [],
+      "methods": [
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_lite_special_products_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide($(slider_block)[0], {\n      perPage: 1,\n      gap: 0,\n      perMove: 1,\n    })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [],
+      "methods": [
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_multilink_slider_1",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    gap: 16,\n    type: 'loop',\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product-reviews_3",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n\t\t\t\t\tperPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slideMinWidthMobile : slideMinWidth, slideGap),\n\t\t\t\t\tgap: slideGap,\n\t\t\t\t\tperMove: 1\n\t\t\t\t})"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_2",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_4",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_5",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_6",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_7",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_related_8",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_2",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_4",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_5",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_6",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_7",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_products_similar_8",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_1",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1,\n      start: startIndex\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      direction: \"ttb\",\n      autoHeight: true,\n      perPage: 5,\n      height: 1,\n      perMove: 1,\n      gap: 0,\n      pagination: false,\n      start: startIndex\n    })"
+      ],
+      "options": [
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "mounted",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb",
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_10",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n    gap: 1,\n    start: startIndex\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 7,\n    perMove: 1,\n    gap: \"1rem\",\n    pagination: false,\n    start: startIndex\n  })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_1001",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n    gap: 1,\n    start: startIndex\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 7,\n    perMove: 1,\n    gap: \"1rem\",\n    pagination: false,\n    start: startIndex\n  })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_10011",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1,\n      start: startIndex\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      direction: \"ttb\",\n      autoHeight: true,\n      perPage: 5,\n      height: 1,\n      perMove: 1,\n      gap: 0,\n      pagination: false,\n      start: startIndex\n    })"
+      ],
+      "options": [
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "mounted",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb",
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_101",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1,\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      direction: \"ttb\",\n      autoHeight: true,\n      perPage: 5,\n      height: 1,\n      perMove: 1,\n      gap: 0,\n      pagination: false,\n    })"
+      ],
+      "options": [
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "mounted",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb",
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_2",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1,\n      start: startIndex\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      direction: \"ttb\",\n      autoHeight: true,\n      perPage: 3,\n      height: 1,\n      perMove: 1,\n      gap: 0,\n      pagination: false,\n      start: startIndex\n    })"
+      ],
+      "options": [
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "mounted",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb",
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_3",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1,\n      start: startIndex\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      direction: \"ttb\",\n      autoHeight: true,\n      perPage: 3,\n      height: 1,\n      perMove: 1,\n      gap: 0,\n      pagination: false,\n      start: startIndex\n    })"
+      ],
+      "options": [
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "mounted",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb",
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_4",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n    gap: 1,\n    start: startIndex\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 7,\n    perMove: 1,\n    gap: \"1rem\",\n    pagination: false,\n    start: startIndex\n  })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_5",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n    gap: 1,\n    start: startIndex\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 4,\n    perMove: 1,\n    gap: \"0.8rem\",\n    pagination: false,\n    breakpoints: {\n      1024: {\n        perPage: 5,\n        gap: \"0.8rem\",\n      },\n    },\n    start: startIndex\n  })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_6",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n    gap: 1,\n    start: startIndex\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 5,\n    perMove: 1,\n    gap: \"1rem\",\n    pagination: false,\n    start: startIndex\n  })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_7",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n    gap: 1,\n    start: startIndex\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 5,\n    perMove: 1,\n    gap: \"1rem\",\n    pagination: false,\n    start: startIndex\n  })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_8",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1,\n      start: startIndex\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: \"1rem\",\n      pagination: false,\n      start: startIndex\n    })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage",
+        "start"
+      ],
+      "events": [
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_product_9",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 0\n    })",
+        "new Splide(mobileSliderBlock[0], {\n      pagination: true,\n      arrows: false\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      direction: 'ttb',\n      autoHeight: true,\n      perPage: 8,\n      height: 65,\n      width: 46,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "arrows",
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage",
+        "width"
+      ],
+      "events": [
+        "mousemove",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb",
+        "product modal gallery"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_1",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    arrows: false,\n    gap: 1,\n    pagination: false,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "arrows",
+        "autoplay",
+        "gap",
+        "interval",
+        "pagination",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [
+        {
+          "name": "Unmodified widget JS on synthetic markup, pagination, movement and editor reinitialization",
+          "browsers": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_10",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      rewind: true,\n      arrows: false,\n      gap: 1,\n      pagination: false,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "arrows",
+        "autoplay",
+        "gap",
+        "interval",
+        "pagination",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [
+        {
+          "name": "Unmodified widget JS on synthetic markup, pagination, movement and editor reinitialization",
+          "browsers": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_11",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      rewind: true,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_12",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      type: count_slides <= count_active_slides ? 'slide' : 'loop',\n      perPage: count_active_slides,\n      perMove: 1,\n      padding: slider_padding,\n      gap: options.slidesGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "padding",
+        "perMove",
+        "perPage",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_13",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_14",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n      rewind: true,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "pagination:mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [
+        {
+          "name": "Unmodified widget JS on synthetic markup, pagination, movement and editor reinitialization",
+          "browsers": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_15",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n      type: count_slides <= count_active_slides ? 'slide' : 'loop',\n      rewind: true,\n      perPage: count_active_slides,\n      perMove: 1,\n      padding: {\n        right: currentPadding,\n        left: 0,\n      },\n      gap: currentGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "padding",
+        "perMove",
+        "perPage",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_16",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      type: 'loop',\n      rewind: true,\n      arrows: false,\n      gap: 1,\n      pagination: false,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "arrows",
+        "autoplay",
+        "gap",
+        "interval",
+        "pagination",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_17",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n      rewind: true,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "pagination:mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [
+        {
+          "name": "Unmodified widget JS on synthetic markup, pagination, movement and editor reinitialization",
+          "browsers": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_18",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      rewind: true,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_19",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    type: is_loop ? 'loop' : 'slide',\n    arrows: false,\n    gap: currentGap,\n    perPage: 1,\n    perMove: 1,\n    focus: 'center',\n    padding: {\n      right: currentPadding,\n      left: currentPadding,\n    },\n    pagination: false,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "arrows",
+        "autoplay",
+        "focus",
+        "gap",
+        "interval",
+        "padding",
+        "pagination",
+        "perMove",
+        "perPage",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_20",
+      "libraries": [
+        "splide3",
+        "splide-grid",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n      type: count_slides <= col_count * row_count ? 'slide' : 'loop',\n      rewind: true,\n      pagination: false,\n      perMove: 1,\n      gap: currentGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000,\n      grid: {\n        rows: row_count,\n        cols: col_count,\n        gap: {\n          row: currentGap,\n          col: currentGap,\n        },\n      },\n      breakpoints: {\n        768: {\n          grid: {\n            rows: 2,\n            cols: 2,\n          },\n          pagination: true,\n        },\n      }\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "breakpoints",
+        "gap",
+        "grid",
+        "interval",
+        "pagination",
+        "perMove",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "extensions/grid"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_22",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      type: count_slides <= count_active_slides ? 'slide' : 'loop',\n      perPage: count_active_slides,\n      perMove: 1,\n      padding: slider_padding,\n      gap: options.slidesGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "padding",
+        "perMove",
+        "perPage",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_23",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_24",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n      type: count_slides <= count_active_slides ? 'slide' : 'loop',\n      rewind: true,\n      perPage: count_active_slides,\n      perMove: 1,\n      padding: {\n        right: currentPadding,\n        left: 0,\n      },\n      gap: currentGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "padding",
+        "perMove",
+        "perPage",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_25",
+      "libraries": [
+        "splide3",
+        "splide-grid",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n      type: count_slides <= col_count * row_count ? 'slide' : 'loop',\n      rewind: true,\n      pagination: false,\n      perMove: 1,\n      gap: currentGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000,\n      grid: {\n        rows: row_count,\n        cols: col_count,\n        gap: {\n          row: currentGap,\n          col: currentGap,\n        },\n      },\n      breakpoints: {\n        768: {\n          grid: {\n            rows: 2,\n            cols: 2,\n          },\n          pagination: true,\n        },\n      }\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "breakpoints",
+        "gap",
+        "grid",
+        "interval",
+        "pagination",
+        "perMove",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "extensions/grid"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_26",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n      perPage: slidesPerView,\n      gap: slide_gap,\n      perMove: 1,\n      focus: 0\n    })"
+      ],
+      "options": [
+        "focus",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "active",
+        "mounted",
+        "pagination:mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_3",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n      type: count_slides <= count_active_slides ? 'slide' : 'loop',\n      perPage: count_active_slides,\n      perMove: 1,\n      padding: slider_padding,\n      gap: options.slidesGap,\n      autoplay: !!is_autoplay,\n      interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n    })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "padding",
+        "perMove",
+        "perPage",
+        "type"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_4",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_5",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_6",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider, {\n    type: count_slides <= count_active_slides ? 'slide' : 'loop',\n    rewind: true,\n    perPage: count_active_slides,\n    perMove: 1,\n    padding: {\n      right: currentPadding,\n      left: 0,\n    },\n    gap: currentGap,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "gap",
+        "interval",
+        "padding",
+        "perMove",
+        "perPage",
+        "rewind",
+        "type"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_7",
+      "libraries": [
+        "splide3"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    arrows: false,\n    gap: 1,\n    pagination: false,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "arrows",
+        "autoplay",
+        "gap",
+        "interval",
+        "pagination",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [
+        {
+          "name": "Unmodified widget JS on synthetic markup, pagination, movement and editor reinitialization",
+          "browsers": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_8",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "pagination:mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [
+        {
+          "name": "Unmodified widget JS on synthetic markup, pagination, movement and editor reinitialization",
+          "browsers": [
+            "chromium",
+            "firefox",
+            "webkit"
+          ]
+        }
+      ],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_promo_slider_9",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n    rewind: true,\n    autoplay: !!is_autoplay,\n    interval: autoplay_delay ? parseInt(autoplay_delay) * 1000 : 5000\n  })"
+      ],
+      "options": [
+        "autoplay",
+        "interval",
+        "rewind"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_shop-reviews_1",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mobSlider[0], {\n    type: 'loop',\n    arrows: false\n  })"
+      ],
+      "options": [
+        "arrows",
+        "type"
+      ],
+      "events": [],
+      "methods": [
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_shop-reviews_4",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider[0], {\n        type: 'loop',\n        arrows: false\n      })"
+      ],
+      "options": [
+        "arrows",
+        "type"
+      ],
+      "events": [],
+      "methods": [
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_shop-reviews_5",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n\t\t\t\t\tperPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slideMinWidthMobile : slideMinWidth, slideGap),\n\t\t\t\t\tgap: slideGap,\n\t\t\t\t\tperMove: 1\n\t\t\t\t})"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_short_card_product_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n        gap: 1,\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        direction: \"ttb\",\n        autoHeight: true,\n        perPage: 5,\n        height: 1,\n        perMove: 1,\n        gap: 0,\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "autoHeight",
+        "direction",
+        "gap",
+        "height",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "mounted",
+        "move"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "ttb"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_1",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n          perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n          gap: slide_gap,\n          perMove: 1\n        })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_10",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_11",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_12",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n          perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slideMinWidthMobile : slideMinWidth, slideGap),\n          gap: slideGap,\n          perMove: 1\n        })",
+        "new Splide(mainSliderBlock[0], {\n        gap: 1,\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        perPage: 5,\n        perMove: 1,\n        gap: '1rem',\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_12 1",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n          perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slideMinWidthMobile : slideMinWidth, slideGap),\n          gap: slideGap,\n          perMove: 1\n        })",
+        "new Splide(mainSliderBlock[0], {\n        gap: 1,\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        perPage: 5,\n        perMove: 1,\n        gap: '1rem',\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_15",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_16",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n      perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n      gap: init_slide_gap,\n      perMove: 1,\n      breakpoints: {\n        768: {\n          padding: {\n            left: mobile_left_padding,\n            right: mobile_right_padding\n          }\n        }\n      }\n    })",
+        "new Splide(mainSliderBlock[0], {\n    gap: 1\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 5,\n    perMove: 1,\n    gap: '1rem',\n    pagination: false\n  })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_16_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n          perPage: getSlidesPerView(sliderBlock, initSlideMinWidth, initSlideGap),\n          gap: initSlideGap,\n          perMove: 1,\n          breakpoints: {\n            768: {\n              padding: {\n                left: mobileLeftPadding,\n                right: mobileRightPadding\n              }\n            }\n          }\n        })",
+        "new Splide(mainSliderBlock[0], {\n        gap: 1\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        perPage: 5,\n        perMove: 1,\n        gap: '1rem',\n        pagination: false\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_16_2",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(sliderBlock[0], {\n          perPage: getSlidesPerView(sliderBlock, initSlideMinWidth, initSlideGap),\n          gap: initSlideGap,\n          perMove: 1,\n          breakpoints: {\n            768: {\n              padding: {\n                left: mobileLeftPadding,\n                right: mobileRightPadding\n              }\n            }\n          }\n        })",
+        "new Splide(mainSliderBlock[0], {\n        gap: 1\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        perPage: 5,\n        perMove: 1,\n        gap: '1rem',\n        pagination: false\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_17",
+      "libraries": [
+        "splide-grid",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n      perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n      grid: {\n        rows: slider_grid_rows,\n        gap: {\n          row: init_slide_gap + 10,\n        }\n      },\n      gap: init_slide_gap,\n      perMove: 1,\n      breakpoints: {\n        768: {\n          padding: {\n            left: mobile_left_padding,\n            right: mobile_right_padding\n          },\n          grid: {\n            rows: 1,\n          }\n        }\n      }\n    })",
+        "new Splide(mainSliderBlock[0], {\n    gap: 1\n  })",
+        "new Splide(tumbsSliderBlock[0], {\n    perPage: 5,\n    perMove: 1,\n    gap: '1rem',\n    pagination: false\n  })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "grid",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "extensions/grid"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_17_1",
+      "libraries": [
+        "splide-grid",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        grid: {\n          rows: slider_grid_rows,\n          gap: {\n            row: init_slide_gap + 10,\n          }\n        },\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            },\n            grid: {\n              rows: 1,\n            }\n          }\n        }\n      })",
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })",
+        "new Splide(tumbsSliderBlock[0], {\n      perPage: 5,\n      perMove: 1,\n      gap: '1rem',\n      pagination: false\n    })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "grid",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [
+        "extensions/grid"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_21",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n          perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n          gap: slide_gap,\n          perMove: 1\n        })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_22",
+      "libraries": [],
+      "constructors": [],
+      "options": [],
+      "events": [],
+      "methods": [],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_6",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_8",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(tabs_slider[0], {\n        autoWidth: true,\n        gap: 20,\n        perMove: 1,\n        pagination: false\n      })",
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, isMobileWidth() ? slide_min_width_mobile : slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1,\n        pagination: false,\n        padding: {\n          right: '50px'\n        }\n      })"
+      ],
+      "options": [
+        "autoWidth",
+        "gap",
+        "padding",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "mounted"
+      ],
+      "methods": [
+        "go",
+        "mount",
+        "sync"
+      ],
+      "excluded": [
+        "sync"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_tabs_13",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerView(slider_block, init_slide_min_width, init_slide_gap),\n        gap: init_slide_gap,\n        perMove: 1,\n        breakpoints: {\n          768: {\n            padding: {\n              left: mobile_left_padding,\n              right: mobile_right_padding\n            }\n          }\n        }\n      })",
+        "new Splide(tabs_slider[0], {\n        autoWidth: true,\n        gap: 0,\n        perMove: 1,\n        pagination: false\n      })"
+      ],
+      "options": [
+        "autoWidth",
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_tabs_18",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(tabs_slider[0], {\n      autoWidth: true,\n      gap: 0,\n      perMove: 1,\n      pagination: false\n    })",
+        "new Splide(sliderBlock[0], {\n          perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slideMinWidthMobile : slideMinWidth, slideGap),\n          gap: slideGap,\n          perMove: 1\n        })",
+        "new Splide(mainSliderBlock[0], {\n        gap: 1,\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        perPage: 5,\n        perMove: 1,\n        gap: '1rem',\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "autoWidth",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_tabs_18_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(tabs_slider[0], {\n      autoWidth: true,\n      gap: 0,\n      perMove: 1,\n      pagination: false\n    })",
+        "new Splide(sliderBlock[0], {\n          perPage: getSlidesPerView(sliderBlock, isMobileWidth() ? slideMinWidthMobile : slideMinWidth, slideGap),\n          gap: slideGap,\n          perMove: 1\n        })",
+        "new Splide(mainSliderBlock[0], {\n        gap: 1,\n      })",
+        "new Splide(tumbsSliderBlock[0], {\n        perPage: 5,\n        perMove: 1,\n        gap: '1rem',\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "autoWidth",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "move",
+        "updated"
+      ],
+      "methods": [
+        "destroy",
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_tabs_9",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(tabsSlider[0], {\n        autoWidth: true,\n        gap: 0,\n        perMove: 1,\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "autoWidth",
+        "gap",
+        "pagination",
+        "perMove"
+      ],
+      "events": [],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_products_tabs_9_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(tabsSlider[0], {\n        autoWidth: true,\n        gap: 0,\n        perMove: 1,\n        pagination: false,\n      })"
+      ],
+      "options": [
+        "autoWidth",
+        "gap",
+        "pagination",
+        "perMove"
+      ],
+      "events": [],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_special_product_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(mainSliderBlock[0], {\n      gap: 1\n    })"
+      ],
+      "options": [
+        "gap"
+      ],
+      "events": [],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_stories_2",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(thumbnails, {\n      fixedWidth: 124,\n      fixedHeight: 164,\n      gap: 17,\n      drag: true,\n      isNavigation: true,\n      pagination: false,\n      arrows: false,\n      focus: 'center',\n      breakpoints: {\n        '1537': {\n          pagination: true\n        }\n      },\n    })",
+        "new Splide(gallery, {\n      fixedWidth: 340,\n      arrows: true,\n      drag: true,\n      perPage: 1,\n      pagination: false,\n      breakpoints: {\n        '768': {\n          fixedWidth: false,\n          height: false,\n          arrows: true,\n          pagination: true\n        }\n      },\n    })"
+      ],
+      "options": [
+        "arrows",
+        "breakpoints",
+        "drag",
+        "fixedHeight",
+        "fixedWidth",
+        "focus",
+        "gap",
+        "isNavigation",
+        "pagination",
+        "perPage"
+      ],
+      "events": [
+        "moved",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount",
+        "sync"
+      ],
+      "excluded": [
+        "sync"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_stories_3",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(thumbnails, {\n      fixedWidth: 124,\n      fixedHeight: 164,\n      gap: 17,\n      drag: true,\n      isNavigation: true,\n      pagination: false,\n      arrows: false,\n      focus: 'center',\n      breakpoints: {\n        '1537': {\n          pagination: true\n        }\n      },\n    })",
+        "new Splide(gallery, {\n      fixedWidth: 340,\n      arrows: true,\n      drag: true,\n      perPage: 1,\n      pagination: false,\n      breakpoints: {\n        '768': {\n          fixedWidth: false,\n          height: false,\n          arrows: true,\n          pagination: true\n        }\n      },\n    })"
+      ],
+      "options": [
+        "arrows",
+        "breakpoints",
+        "drag",
+        "fixedHeight",
+        "fixedWidth",
+        "focus",
+        "gap",
+        "isNavigation",
+        "pagination",
+        "perPage"
+      ],
+      "events": [
+        "moved",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount",
+        "sync"
+      ],
+      "excluded": [
+        "sync"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_subcollections_2",
+      "libraries": [
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n        perPage: getSlidesPerVew(slider_block, slide_min_width, slide_gap),\n        gap: slide_gap,\n        perMove: 1\n      })"
+      ],
+      "options": [
+        "gap",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount",
+        "refresh"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_video_clip_2",
+      "libraries": [
+        "splide3",
+        "splide",
+        "splide-video"
+      ],
+      "constructors": [
+        "new Splide(thumbnails, {\n      fixedWidth: 289,\n      fixedHeight: 163,\n      gap: 36,\n      drag: false,\n      isNavigation: true,\n      pagination: false,\n      arrows: true,\n      rewind: true,\n      breakpoints: {\n        '768': {\n          height: false,\n          arrows: false,\n          fixedWidth: 224,\n          fixedHeight: 126,\n          gap: 16,\n          drag: true\n        }\n      },\n    })",
+        "new Splide(gallery, {\n      width: '100%',\n      fixedHeight: 498,\n      arrows: false,\n      rewind: false,\n      drag: false,\n      isNavigation: false,\n      perPage: 1,\n      cover: true,\n      pagination: false,\n      breakpoints: {\n        '768': {\n          fixedWidth: false,\n          width: '100%',\n          fixedHeight: false\n        }\n      },\n      video: {\n        loop: true,\n        mute: true,\n      },\n    })"
+      ],
+      "options": [
+        "arrows",
+        "breakpoints",
+        "cover",
+        "drag",
+        "fixedHeight",
+        "fixedWidth",
+        "gap",
+        "isNavigation",
+        "pagination",
+        "perPage",
+        "rewind",
+        "video",
+        "width"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "mount",
+        "sync"
+      ],
+      "excluded": [
+        "sync",
+        "video"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_video_clip_3",
+      "libraries": [
+        "splide3",
+        "splide",
+        "splide-video"
+      ],
+      "constructors": [
+        "new Splide(thumbnails, {\n      fixedWidth: 289,\n      fixedHeight: 163,\n      gap: 36,\n      drag: false,\n      isNavigation: true,\n      pagination: false,\n      arrows: true,\n      rewind: true,\n      breakpoints: {\n        768: {\n          height: false,\n          arrows: false,\n          fixedWidth: 224,\n          fixedHeight: 126,\n          gap: 16,\n          drag: true,\n        },\n      },\n    })",
+        "new Splide(gallery, {\n      width: \"100%\",\n      fixedHeight: 498,\n      arrows: false,\n      rewind: false,\n      drag: false,\n      isNavigation: false,\n      perPage: 1,\n      cover: true,\n      pagination: false,\n      breakpoints: {\n        768: {\n          fixedWidth: false,\n          width: \"100%\",\n          fixedHeight: false,\n        },\n      },\n      video: {\n        loop: true,\n        mute: true,\n      },\n    })"
+      ],
+      "options": [
+        "arrows",
+        "breakpoints",
+        "cover",
+        "drag",
+        "fixedHeight",
+        "fixedWidth",
+        "gap",
+        "isNavigation",
+        "pagination",
+        "perPage",
+        "rewind",
+        "video",
+        "width"
+      ],
+      "events": [
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "mount",
+        "sync"
+      ],
+      "excluded": [
+        "sync",
+        "video"
+      ],
+      "status": "requires-splide",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    },
+    {
+      "widget": "system_widget_v4_viewed_products_1",
+      "libraries": [
+        "splide3",
+        "splide"
+      ],
+      "constructors": [
+        "new Splide(slider_block[0], {\n    perPage: getSlidesPerView(slider_block, slide_min_width, slide_gap),\n    gap: slide_gap,\n    perMove: 1,\n    pagination: false,\n    breakpoints: {\n      768: {\n        padding: {\n          left: mobile_left_padding,\n          right: mobile_right_padding\n        }\n      }\n    }\n  })"
+      ],
+      "options": [
+        "breakpoints",
+        "gap",
+        "pagination",
+        "perMove",
+        "perPage"
+      ],
+      "events": [
+        "arrows:updated",
+        "mounted",
+        "updated"
+      ],
+      "methods": [
+        "go",
+        "mount"
+      ],
+      "excluded": [],
+      "status": "candidate-unverified",
+      "scenarios": [],
+      "result": "Full widget JS + Liquid + SCSS integration has not been certified."
+    }
+  ]
+}

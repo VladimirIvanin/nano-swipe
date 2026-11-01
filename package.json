@@ -1,0 +1,52 @@
+{
+  "name": "nano-swipe",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A compact, dependency-free JavaScript carousel",
+  "main": "./dist/nano-swipe.cjs",
+  "module": "./dist/nano-swipe.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/nano-swipe.mjs",
+      "require": "./dist/nano-swipe.cjs"
+    },
+    "./css": "./dist/nano-swipe.css",
+    "./dist/nano-swipe.css": "./dist/nano-swipe.css",
+    "./browser-build/nano-swipe.css": "./browser-build/nano-swipe.css",
+    "./browser-build/nano-swipe.min.js": "./browser-build/nano-swipe.min.js"
+  },
+  "files": [
+    "dist",
+    "browser-build",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:browser": "npm run build",
+    "test:package": "npm run build && node scripts/test-package.mjs",
+    "prepack": "npm run build",
+    "pretest": "npm run build",
+    "test": "playwright test",
+    "audit:widgets": "node scripts/widgets.mjs",
+    "docs:build": "npm run build && node scripts/build-docs.mjs",
+    "docs:dev": "npm run docs:build && node scripts/serve-docs.mjs",
+    "test:docs": "npm run docs:build && playwright test --config=playwright.docs.config.js",
+    "check:release": "npm run build && node scripts/release.mjs"
+  },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/VladimirIvanin/nano-swipe.git" },
+  "homepage": "https://VladimirIvanin.github.io/nano-swipe/",
+  "bugs": { "url": "https://github.com/VladimirIvanin/nano-swipe/issues" },
+  "keywords": ["slider", "carousel", "swipe", "lightweight", "gallery"],
+  "unpkg": "browser-build/nano-swipe.min.js",
+  "jsdelivr": "browser-build/nano-swipe.min.js",
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "engines": { "node": ">=22" },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@splidejs/splide": "3.6.12",
+    "acorn": "^8.15.0",
+    "esbuild": "0.25.12",
+    "jquery": "^3.7.1"
+  }
+}
