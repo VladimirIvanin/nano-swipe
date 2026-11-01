@@ -164,7 +164,11 @@ test('swiping text prevents selection while disabled drag preserves text selecti
   await page.mouse.move(start - 2, y);
   await page.mouse.move(start - 4, y);
   await page.mouse.move(end, y, { steps: 12 });
+  // Cross half the slide so this selection check does not depend on flick
+  // velocity or the time spent evaluating the selection before pointerup.
+  await page.mouse.move(20, y, { steps: 4 });
   expect(await page.evaluate(() => getSelection().toString())).toBe('');
+  await page.waitForTimeout(220);
   await page.mouse.up();
   expect(await page.evaluate(() => getSelection().toString())).toBe('');
   await expect.poll(() => page.evaluate(() => slider.index)).toBe(1);

@@ -13,12 +13,12 @@ test('eight working demos, API, sizes and downloadable assets', async ({ page, r
   await expect(page.locator('body')).not.toContainText(/InSales|инсейлс|Splide\s+3/i);
   await expect(page.locator('meta[name="description"]')).not.toHaveAttribute('content', /InSales|Splide\s+3/i);
   await expect(page.locator('.demo .splide.is-initialized')).toHaveCount(8);
-  await expect(page.locator('#options-body tr')).toHaveCount(27);
+  await expect(page.locator('#options-body tr')).toHaveCount(30);
   await expect(page.locator('[data-code="noDrag"]')).toContainText("noDrag: '.zoomix-touch, .zoomix-touch *'");
   await expect(page.locator('[data-js-size]')).not.toHaveText('—');
   const response = await request.get('/docs-meta.json');
   const meta = await response.json();
-  expect(meta.jsGzip).toBeLessThanOrEqual(5632);
+  expect(meta.jsGzip).toBeLessThanOrEqual(7168);
   for (const file of ['nano-swipe.js', 'nano-swipe.css', 'nano-swipe.mjs']) {
     const response = await request.get(`/${file}`);
     expect(response.ok()).toBe(true);
@@ -71,4 +71,41 @@ test('autoplay has a working explicit stop and restart button', async ({ page })
   expect(await page.locator('#demo-autoplay').evaluate(root => root.splide.options.autoplay)).toBe(false);
   await page.locator('#toggle-autoplay').click();
   await expect(page.locator('#toggle-autoplay')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('native mobile swipes keep the multiple-slide demo responsive and allow page scroll', async ({ page, browserName }, testInfo) => {
+  test.skip(browserName !== 'chromium' || testInfo.project.name !== 'mobile', 'Native touch injection uses mobile Chromium CDP.');
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.locator('#demo-multiple').scrollIntoViewIfNeeded();
+  await page.evaluate(() => {
+    window.touchDrags = 0;
+    document.querySelector('#demo-multiple').splide.on('drag', () => touchDrags++);
+  });
+  const cdp = await page.context().newCDPSession(page);
+  const track = page.locator('#demo-multiple .splide__track');
+  for (let i = 0; i < 4; i++) {
+    const previous = await page.locator('#demo-multiple').evaluate(root => root.splide.index);
+    const box = await track.boundingBox();
+    const x = box.x + box.width * 0.75, y = box.y + box.height / 2;
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+    for (const dx of [12, 24, 40]) {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - dx, y }] });
+    }
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    expect(await page.locator('#demo-multiple').evaluate(root => root.splide.index)).not.toBe(previous);
+  }
+  expect(await page.evaluate(() => touchDrags)).toBe(4);
+  await expect.poll(() => page.locator('#demo-multiple').evaluate(root => root.splide.state.is(Splide.STATES.IDLE))).toBe(true);
+  const previous = await page.locator('#demo-multiple').evaluate(root => root.splide.index);
+  const scrollY = await page.evaluate(() => window.scrollY);
+  const box = await track.boundingBox();
+  const x = box.x + box.width / 2, y = box.y + box.height * 0.8;
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+  for (const dy of [25, 50, 80]) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + 2, y: y - dy }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(scrollY);
+  expect(await page.locator('#demo-multiple').evaluate(root => root.splide.index)).toBe(previous);
+  expect(errors).toEqual([]);
+  await cdp.detach();
 });

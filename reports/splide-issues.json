@@ -1,0 +1,300 @@
+{
+  "audit_date": "2026-11-01",
+  "repository": "https://github.com/Splidejs/splide",
+  "downloaded_issue_count": 543,
+  "scope": "Six pages of open and closed issues; focused review of 21 relevant reports and maintainer comments. This is not an exhaustive audit of all Splide issues.",
+  "baseline": {
+    "test_file": "tests/splide-issues.spec.js",
+    "engine": "chromium",
+    "failed": 12,
+    "passed": 4,
+    "scope": "Initial 16-case regression probe, before the fixes and additional guard cases."
+  },
+  "entries": [
+    {
+      "number": 211,
+      "title": "Prevent onResize method triggering on scroll event",
+      "url": "https://github.com/Splidejs/splide/issues/211",
+      "upstream_state_at_audit": "closed",
+      "result": "fixed",
+      "finding": "Height-only resize reset both a pending transition and an active drag. Preserve the current visual position when viewport width and options have not changed.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1350,
+      "title": "Disabled drag feature is still moving the slider",
+      "url": "https://github.com/Splidejs/splide/issues/1350",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Disabling drag during a pending or active gesture did not cancel it. Explicit cancellation now restores the position and releases mouse capture.",
+      "tests": "tests/splide-issues.spec.js; tests/swipe.spec.js"
+    },
+    {
+      "number": 1359,
+      "title": "Blocked aria-hidden on an element because its descendant retained focus",
+      "url": "https://github.com/Splidejs/splide/issues/1359",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Focus could remain in a newly hidden slide. Clear the old focus before aria-hidden and focus the current slide when slideFocus is enabled. Autoplay stays paused during active drag.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1127,
+      "title": "use transform: scale width error",
+      "url": "https://github.com/Splidejs/splide/issues/1127",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Logical positions use untransformed CSS layout widths. Ancestor scale is still used to normalize screen-space pointer distance and momentum.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1305,
+      "title": "container display:flex overflow slider",
+      "url": "https://github.com/Splidejs/splide/issues/1305",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "The carousel could force a flex/grid column beyond its available width. Add min-width:0 to the carousel root.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1257,
+      "title": "Keyboard",
+      "url": "https://github.com/Splidejs/splide/issues/1257",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Disabling the focused end arrow lost focused keyboard navigation. Transfer focus to the enabled opposite arrow.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1284,
+      "title": "Focus center with trimspace false not working correctly when showing slider on click",
+      "url": "https://github.com/Splidejs/splide/issues/1284",
+      "upstream_state_at_audit": "open",
+      "result": "covered",
+      "finding": "Opening a native dialog correctly recalculates centered geometry via ResizeObserver.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1307,
+      "title": "Link focus issue on \"destroyed\" slider",
+      "url": "https://github.com/Splidejs/splide/issues/1307",
+      "upstream_state_at_audit": "open",
+      "result": "covered",
+      "finding": "Destroy breakpoint restores descendant links to the tab order.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1134,
+      "title": "Destroy does not remove `tabindex=\"-1\"` from all items causing an accessibility issue",
+      "url": "https://github.com/Splidejs/splide/issues/1134",
+      "upstream_state_at_audit": "open",
+      "result": "covered",
+      "finding": "Author tabindex and ARIA are restored on destroy, including the responsive destroy path.",
+      "tests": "tests/splide-issues.spec.js; tests/tvist-behavior.spec.js"
+    },
+    {
+      "number": 781,
+      "title": "Drag with mouse sometimes not working correct when mousebutton released above arrows",
+      "url": "https://github.com/Splidejs/splide/issues/781",
+      "upstream_state_at_audit": "closed",
+      "result": "covered",
+      "finding": "Window pointer listeners and capture release prevent a sticky drag when the mouse is released over an arrow.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1255,
+      "title": "Wrong width of next slide when using padding and gap",
+      "url": "https://github.com/Splidejs/splide/issues/1255",
+      "upstream_state_at_audit": "open",
+      "result": "covered",
+      "finding": "Initial loop geometry with padding and gap stays identical after refresh.",
+      "tests": "tests/splide-issues.spec.js"
+    },
+    {
+      "number": 1365,
+      "title": "Vertical page scroll blocked after horizontal drag on mobile (v4)",
+      "url": "https://github.com/Splidejs/splide/issues/1365",
+      "upstream_state_at_audit": "open",
+      "result": "covered",
+      "finding": "Native mobile Chromium verifies vertical page scrolling after repeated horizontal gestures. This is not proof for physical iOS Safari.",
+      "tests": "docs-tests/docs.spec.js"
+    },
+    {
+      "number": 1382,
+      "title": "Touch switching is not possible on mobile devices on Shopify",
+      "url": "https://github.com/Splidejs/splide/issues/1382",
+      "upstream_state_at_audit": "open",
+      "result": "partial_coverage",
+      "finding": "Repeated native touch swipes work in the local multiple-slide demo. The Shopify theme and its CSS are not reproduced.",
+      "tests": "docs-tests/docs.spec.js"
+    },
+    {
+      "number": 1384,
+      "title": "Problem with autoWidth and breakpoints",
+      "url": "https://github.com/Splidejs/splide/issues/1384",
+      "upstream_state_at_audit": "open",
+      "result": "guarded",
+      "finding": "autoWidth remains readonly while mounted. Direct changes and differing breakpoint values raise explicit errors; failed options updates roll back atomically. After destroy, modes may be changed and mounted again.",
+      "tests": "tests/options-validation.spec.js; tests/tvist-regressions.spec.js"
+    },
+    {
+      "number": 1193,
+      "title": "Arrows become disabled in \"loop\" type slide instead of looping and shifting clones",
+      "url": "https://github.com/Splidejs/splide/issues/1193",
+      "upstream_state_at_audit": "open",
+      "result": "guarded",
+      "finding": "type remains readonly while mounted. Direct changes and differing breakpoint values raise explicit errors; failed options updates roll back atomically. After destroy, modes may be changed and mounted again.",
+      "tests": "tests/options-validation.spec.js; tests/tvist-regressions.spec.js"
+    },
+    {
+      "number": 1341,
+      "title": "Bugs when using focus, type loop together",
+      "url": "https://github.com/Splidejs/splide/issues/1341",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Fractional positive perPage and Infinity are rejected before DOM changes. Numeric strings are normalized. Fractional flickMaxPages creates an integer clone buffer, and changes to flickMaxPages/clones rebuild that buffer.",
+      "tests": "tests/options-validation.spec.js"
+    },
+    {
+      "number": 1260,
+      "title": "\"loop\" and checkbox",
+      "url": "https://github.com/Splidejs/splide/issues/1260",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Clone descendants receive unique IDs and local IDREF/fragment/SVG references. Form values, checkbox/radio state, select selections and files synchronize with originals on input/change and before navigation. Clones are excluded from the enclosing original form. Native reset is synchronized; original IDs and edited values survive destroy. JavaScript listeners are not cloned: use event delegation.",
+      "tests": "tests/loop-forms.spec.js; tests/splide-issues.spec.js",
+      "reproduction_before_fix": {
+        "options": {
+          "type": "loop",
+          "speed": 0
+        },
+        "slides": 4,
+        "content": "<input id=\"choice-N\" type=\"checkbox\"><label for=\"choice-N\">Choice N</label>",
+        "steps": [
+          "go(2)",
+          "click the label in original slide 2"
+        ],
+        "chromium_result": {
+          "duplicateIds": 2,
+          "labelControlsOriginal": false,
+          "originalChecked": false,
+          "controlledInputChecked": true
+        }
+      }
+    },
+    {
+      "number": 1347,
+      "title": "When scale up it's showing a little right glitch when click on next",
+      "url": "https://github.com/Splidejs/splide/issues/1347",
+      "upstream_state_at_audit": "open",
+      "result": "fixed",
+      "finding": "Logical offsets use fractional computed layout widths rather than transformed bounding rectangles. CSS scale/translate applied to the active slide no longer corrupt navigation stride.",
+      "tests": "tests/splide-issues.spec.js (#1347)"
+    },
+    {
+      "number": 1224,
+      "title": "Slide does not loop naturally when using autoWidth option",
+      "url": "https://github.com/Splidejs/splide/issues/1224",
+      "upstream_state_at_audit": "open",
+      "result": "partial_coverage",
+      "finding": "Variable-width loop coverage is tested; physical-device animation smoothness and every upstream reproduction are not certified.",
+      "tests": "tests/tvist-regressions.spec.js"
+    },
+    {
+      "number": 1327,
+      "title": "pauseOnFocus / pauseOnHover does not work",
+      "url": "https://github.com/Splidejs/splide/issues/1327",
+      "upstream_state_at_audit": "open",
+      "result": "outside_scope",
+      "finding": "This report concerns Svelte AutoScroll extension options. nano-swipe has interval autoplay, without Svelte or the AutoScroll extension.",
+      "tests": null
+    },
+    {
+      "number": 1293,
+      "title": "Empty spae/gap after refresh and moving slider",
+      "url": "https://github.com/Splidejs/splide/issues/1293",
+      "upstream_state_at_audit": "open",
+      "result": "outside_scope",
+      "finding": "This report uses vertical direction and free drag in a React wrapper. Those features are not part of the supported nano-swipe contract.",
+      "tests": null
+    }
+  ],
+  "verification": {
+    "status": "passed",
+    "new_regression_scenarios": 32,
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "full_suite": {
+      "passed": 501,
+      "failed": 0,
+      "command": "npm test -- --global-timeout=240000"
+    },
+    "docs": {
+      "passed": 21,
+      "skipped": 3,
+      "failed": 0,
+      "command": "npm run test:docs -- --global-timeout=120000",
+      "note": "Native touch injection is Chromium-only."
+    },
+    "package": "ESM, CommonJS, browser, CSS and gzip passed",
+    "browser_js_gzip_bytes": 7131,
+    "js_gzip_budget_bytes": 7168,
+    "physical_iphone_tested": false
+  },
+  "previous_verification": {
+    "new_regression_scenarios": 22,
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "full_suite": {
+      "passed": 402,
+      "failed": 0,
+      "command": "npm test -- --global-timeout=240000"
+    },
+    "additional_guards": {
+      "passed": 6,
+      "failed": 0,
+      "new_distinct_checks": 3,
+      "command": "npx playwright test tests/splide-issues.spec.js -g '#1260|#1284' --reporter=line --global-timeout=120000"
+    },
+    "unique_browser_checks_passed": 405,
+    "docs": {
+      "passed": 21,
+      "skipped": 3,
+      "failed": 0,
+      "note": "Native touch injection is Chromium-only; three non-mobile project instances skip that test."
+    },
+    "package": "ESM, CommonJS, browser, CSS and gzip passed",
+    "browser_js_gzip_bytes": 6080,
+    "js_gzip_budget_bytes": 6144,
+    "physical_iphone_tested": false
+  },
+  "follow_up": {
+    "date": "2026-11-01",
+    "forms_initial_probe": {
+      "failed": 12,
+      "passed": 0,
+      "engine": "chromium"
+    },
+    "resolved": [
+      1260,
+      1347,
+      1341
+    ],
+    "guarded": [
+      1384,
+      1193
+    ],
+    "additional_fix": "Updating flickMaxPages or clones rebuilds the integer loop buffer.",
+    "styling_initial_probe": {
+      "failed": 2,
+      "passed": 0,
+      "engine": "chromium"
+    }
+  }
+}

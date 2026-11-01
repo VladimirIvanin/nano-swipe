@@ -52,11 +52,11 @@ async function compare(browser, options, scenario, count) {
   check(results[1], results[0]);
 }
 
-test('tvist 004 — autoWidth update follows Splide cached width and pagination semantics', async ({ browser }) => {
-  await compare(browser, { perPage: 3 }, async page => {
-    await page.evaluate(() => { slider.options = { autoWidth: true }; });
-    return state(page);
-  }, 5);
+test('tvist 004 — readonly autoWidth update is rejected without keeping stale generated widths', async ({ page }) => {
+  await mount(page, false, { perPage: 3 }, 5);
+  const before = await state(page);
+  await expect(page.evaluate(() => { slider.options = { autoWidth: true }; })).rejects.toThrow('autoWidth');
+  expect(await state(page)).toEqual(before);
 });
 
 test('tvist 021 — calc gap matches physical navigation stride', async ({ browser }) => {

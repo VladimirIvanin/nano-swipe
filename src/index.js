@@ -1,8 +1,11 @@
+import { prepareClone, syncForms } from './clones.js';
+
 const defaults = {
   type: 'slide', speed: 400, waitForTransition: true, perPage: 1, cloneStatus: true,
   arrows: true, pagination: true, interval: 5000, pauseOnHover: true, pauseOnFocus: true,
   resetProgress: true, keyboard: true, easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-  drag: true, direction: 'ltr', slideFocus: true, trimSpace: true,
+  drag: true, dragMinThreshold: 10, flickPower: 600, flickMaxPages: 1,
+  direction: 'ltr', slideFocus: true, trimSpace: true,
   focusableNodes: 'a, button, textarea, input, select, iframe',
 };
 const merge = (target, source) => {
@@ -42,10 +45,11 @@ export default class Splide {
   get length() { return this.Components.Elements?.slides.length || 0; }
   get options() { return this._options; }
   set options(value) {
-    merge(this._base, value);
-    this._resolve();
+    const previous = this._base;
+    this._base = merge(merge({}, previous), value);
+    try { this._resolve(); } catch (error) { this._base = previous; throw error; }
     if (this._mounted) {
-      if (this.is('loop') && ('perPage' in value || 'drag' in value || 'autoWidth' in value)) this._collect();
+      if (this.is('loop') && ('perPage' in value || 'drag' in value || 'clones' in value || 'flickMaxPages' in value)) this._collect();
       this._layout();
       this._controls();
       this._update();
@@ -60,7 +64,19 @@ export default class Splide {
     for (const point of Object.keys(resolved.breakpoints || {}).map(Number).sort((a, b) => min ? a - b : b - a)) {
       if (matchMedia(`(${min ? 'min' : 'max'}-width: ${point}px)`).matches) merge(resolved, this._base.breakpoints[point]);
     }
-    if (!(Number(resolved.perPage) > 0)) resolved.perPage = 1;
+    const perPage = Number(resolved.perPage);
+    if (perPage > 0 && !Number.isInteger(perPage)) throw new Error('[nano-swipe] perPage must be a positive integer.');
+    resolved.perPage = perPage > 0 ? perPage : 1;
+    if (resolved.clones != null && (!Number.isInteger(Number(resolved.clones)) || resolved.clones < 0)) throw new Error('[nano-swipe] clones must be a non-negative integer.');
+    if (resolved.clones != null) resolved.clones = Number(resolved.clones);
+    if (!Number.isFinite(Number(resolved.flickMaxPages)) || resolved.flickMaxPages < 0) throw new Error('[nano-swipe] flickMaxPages must be finite and non-negative.');
+    for (const key of ['type', 'autoWidth']) {
+      const normalized = value => key === 'autoWidth' ? !!value : value;
+      if (this._mounted && normalized(resolved[key]) !== normalized(this.options[key])) throw new Error(`[nano-swipe] ${key} cannot change after mount; destroy first.`);
+      for (const point of Object.values(this._base.breakpoints || {})) {
+        if (key in point && normalized(point[key]) !== normalized(this._base[key])) throw new Error(`[nano-swipe] ${key} cannot change at a breakpoint.`);
+      }
+    }
     for (const key of Object.keys(this._options)) delete this._options[key];
     merge(this._options, resolved);
   }
@@ -98,7 +114,10 @@ export default class Splide {
     if (this._mounted) throw new Error('[splide] Already mounted!');
     this._resolve();
     if (!this._watching) {
+      this._viewportWidth = innerWidth;
       this._resize = () => {
+        const widthChanged = this._viewportWidth !== innerWidth;
+        this._viewportWidth = innerWidth;
         const previous = JSON.stringify(this.options);
         this._resolve();
         if (this.options.destroy) {
@@ -110,7 +129,7 @@ export default class Splide {
         if (previous !== JSON.stringify(this.options)) {
           if (this.is('loop')) this._collect();
           this._layout(); this._controls(); this._update(); this.emit('updated', this.options); this._autoplay();
-        } else this._layout();
+        } else if (widthChanged) this._layout();
         this._update(); this.emit('resized');
       };
       window.addEventListener('resize', this._resize);
@@ -139,6 +158,14 @@ export default class Splide {
       const item = this._slides.find(item => item.slide.contains(event.target));
       if (item) this.emit('click', item, event);
     }, true);
+    const forms = event => {
+      if (event.target.closest('.splide') === this.root) syncForms(this._slides, this.Components.Elements.slides, event);
+    };
+    this._bind(list, 'input', forms);
+    this._bind(list, 'change', forms);
+    this._bind(document, 'reset', event => {
+      if (event.target.contains(this.root) || this.root.contains(event.target)) queueMicrotask(() => { if (this._mounted) syncForms(this._slides, this.Components.Elements.slides, event); });
+    });
     this._drag();
     this._bind(this.root, 'mouseenter', () => { this._hover = true; this._autoplay(); });
     this._bind(this.root, 'mouseleave', () => { this._hover = false; this._autoplay(); });
@@ -180,12 +207,13 @@ export default class Splide {
     });
     this._cloneCount = 0;
     if (this.is('loop') && slides.length) {
-      this._cloneCount = this.options.clones || (this.options.autoWidth ? slides.length : this.options.perPage) * (this.options.drag ? (this.options.flickMaxPages || 1) + 1 : 2);
+      this._cloneCount = this.options.clones || Math.ceil((this.options.autoWidth ? slides.length : this.options.perPage) * (this.options.drag ? (this.options.flickMaxPages || 1) + 1 : 2));
       const clone = (index, before) => {
         const source = ((index % slides.length) + slides.length) % slides.length;
         const slide = slides[source].cloneNode(true);
         slide.classList.add('splide__slide--clone');
         slide.id = `${this.root.id}-clone${String(index + this._cloneCount + 1).padStart(2, '0')}`;
+        prepareClone(slides[source], slide);
         list.insertBefore(slide, before);
         this._slides.push({ slide, index, slideIndex: source, isClone: true });
       };
@@ -196,18 +224,29 @@ export default class Splide {
   }
 
   _end() { return Math.max(0, this.length - (this.options.focus !== undefined || this.is('loop') && this.options.perMove ? 1 : this.options.perPage)); }
+  _scale() {
+    const { list } = this.Components.Elements;
+    return list.getBoundingClientRect().width / parseFloat(getComputedStyle(list).width) || 1;
+  }
   _position(index) {
     const { list, track, slides } = this.Components.Elements;
     if (!slides.length) return 0;
     const item = this._slides.find(item => item.index === index) || this._slides.find(item => item.index === this.index);
-    const first = list.firstElementChild;
-    // DOMRect preserves fractional widths. offsetLeft rounds and accumulates drift in product rows.
-    let offset = item.slide.getBoundingClientRect().left - first.getBoundingClientRect().left;
-    if (this.options.focus === 'center') offset -= (track.clientWidth - this._padLeft - this._padRight - item.slide.getBoundingClientRect().width) / 2;
-    else offset -= (Number(this.options.focus) || 0) * (item.slide.getBoundingClientRect().width + this._gap);
+    // Layout widths retain fractional precision without including visual transforms
+    // on active cards. offsetLeft rounds; DOMRect includes scale/translate effects.
+    let offset = 0, total = 0, width = 0, gap = 0;
+    for (const child of list.children) {
+      const style = getComputedStyle(child);
+      if (style.display === 'none') continue;
+      const size = parseFloat(style.width) || 0;
+      if (child === item.slide) { offset = total; width = size; }
+      gap = parseFloat(style.marginRight) || 0;
+      total += size + gap;
+    }
+    if (this.options.focus === 'center') offset -= (track.clientWidth - this._padLeft - this._padRight - width) / 2;
+    else offset -= (Number(this.options.focus) || 0) * (width + this._gap);
     if (!this.is('loop') && this.options.trimSpace) {
-      const last = slides.at(-1);
-      offset = clamp(offset, Math.max(0, last.getBoundingClientRect().right - first.getBoundingClientRect().left - track.clientWidth + this._padLeft + this._padRight));
+      offset = clamp(offset, Math.max(0, total - gap - track.clientWidth + this._padLeft + this._padRight));
     }
     return -offset;
   }
@@ -216,6 +255,7 @@ export default class Splide {
     this._layoutBusy = true;
     const { track, list } = this.Components.Elements;
     const options = this.options;
+    if (!options.drag) this._cancelDrag?.();
     const padding = options.padding;
     track.style.paddingLeft = unit(typeof padding === 'object' ? padding.left : padding);
     track.style.paddingRight = unit(typeof padding === 'object' ? padding.right : padding);
@@ -244,8 +284,9 @@ export default class Splide {
     return next;
   }
 
-  go(control) {
+  go(control, allowSameIndex = false) {
     if (!this._mounted || !this.length || (this._status === states.MOVING && this.options.waitForTransition)) return this;
+    syncForms(this._slides, this.Components.Elements.slides);
     let dest = this.index;
     if (typeof control === 'number') dest = control;
     else {
@@ -260,7 +301,7 @@ export default class Splide {
     }
     if (!this.is('loop')) dest = clamp(dest, this._end());
     const next = this.is('loop') ? ((dest % this.length) + this.length) % this.length : dest;
-    if (next === this.index) return this;
+    if (next === this.index && !allowSameIndex) return this;
     clearTimeout(this._transitionTimer);
     const { list } = this.Components.Elements;
     if (this.is('loop') && this._status === states.MOVING) {
@@ -280,6 +321,7 @@ export default class Splide {
     list.style.transition = `transform ${this.options.speed}ms ${this.options.easing}`;
     list.style.transform = `translateX(${this._position(dest)}px)`;
     const complete = () => {
+      this._completeMove = null;
       if (!this._mounted) return;
       list.style.transition = '';
       list.style.transform = `translateX(${this._position(next)}px)`;
@@ -287,6 +329,7 @@ export default class Splide {
       this._update();
       this.emit('moved', next, old, dest);
     };
+    this._completeMove = complete;
     if (this.options.speed) this._transitionTimer = setTimeout(complete, this.options.speed);
     else complete();
     this._autoplay();
@@ -355,6 +398,13 @@ export default class Splide {
       slide.classList.toggle('is-prev', index === this.index - 1);
       slide.classList.toggle('is-next', index === this.index + 1);
       const hidden = !visible && (!active || isClone);
+      if (hidden && slide.contains(document.activeElement)) {
+        document.activeElement.blur();
+        if (this.options.slideFocus) {
+          const active = this.Components.Elements.slides[this.index];
+          active.tabIndex = 0; active.focus({ preventScroll: true });
+        }
+      }
       if (hidden) slide.setAttribute('aria-hidden', 'true'); else slide.removeAttribute('aria-hidden');
       if (!hidden && this.options.slideFocus) slide.setAttribute('tabindex', '0'); else slide.removeAttribute('tabindex');
       slide.querySelectorAll(this.options.focusableNodes).forEach(node => {
@@ -369,7 +419,10 @@ export default class Splide {
     const [prev, next] = this._arrowButtons || [];
     if (prev && next && this.options.arrows) {
       const p = this._adjacent(true), n = this._adjacent(false);
+      const focused = document.activeElement;
       prev.disabled = p === -1 && !this.is('loop'); next.disabled = n === -1 && !this.is('loop');
+      if (focused === prev && prev.disabled && !next.disabled) next.focus({ preventScroll: true });
+      if (focused === next && next.disabled && !prev.disabled) prev.focus({ preventScroll: true });
       prev.setAttribute('aria-label', this.is('loop') && this.index === 0 || p > this.index ? 'Go to last slide' : 'Previous slide');
       next.setAttribute('aria-label', this.is('loop') && this.index === this.length - 1 || n !== -1 && n < this.index ? 'Go to first slide' : 'Next slide');
       const normalize = value => this.is('loop') ? (value + this.length) % this.length : value;
@@ -389,56 +442,104 @@ export default class Splide {
 
   _autoplay() {
     clearInterval(this._interval);
-    if (this._mounted && this.options.autoplay && !document.hidden && !(this._hover && this.options.pauseOnHover) && !(this._focused && this.options.pauseOnFocus)) {
+    if (this._mounted && this.options.autoplay && !this._pointer?.active && !document.hidden && !(this._hover && this.options.pauseOnHover) && !(this._focused && this.options.pauseOnFocus)) {
       this._interval = setInterval(() => this.go('>'), this.options.interval);
     }
   }
 
   _drag() {
     const { track, list } = this.Components.Elements;
-    this._bind(track, 'pointerdown', event => {
-      if (!this.options.drag || this._pointer || event.target.closest('.splide') !== this.root || event.button || this._status === states.MOVING || event.target.isContentEditable || event.target.closest('input,textarea,select,button') || this.options.noDrag && event.target.matches(this.options.noDrag)) return;
-      this._pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, delta: 0 };
+    const start = event => {
+      const touch = event.type === 'touchstart';
+      // Use native touch events on phones, as Splide does. Safari can cancel the
+      // pointer stream while the touch stream is still delivering the gesture.
+      if (event.pointerType === 'touch') return;
+      if (touch && event.touches.length !== 1) { finish({ type: 'touchcancel', changedTouches: event.touches }); return; }
+      if (this._pointer || event.target.closest('.splide') !== this.root) return;
       this._suppressClick = false;
-    });
-    this._bind(window, 'pointermove', event => {
+      if (!this.options.drag || event.isPrimary === false || event.button || event.target.isContentEditable || event.target.closest('input,textarea,select,button') || this.options.noDrag && event.target.matches(this.options.noDrag)) return;
+      const point = touch ? event.changedTouches[0] : event;
+      this._pointer = { id: touch ? point.identifier : event.pointerId, touch, x: point.clientX, y: point.clientY, base: { x: point.clientX, time: event.timeStamp } };
+    };
+    const pointOf = (event, pointer) => pointer.touch
+      ? [...(event.changedTouches || [])].find(point => point.identifier === pointer.id)
+      : event.pointerId === pointer.id ? event : null;
+    const move = event => {
       const pointer = this._pointer;
-      if (!pointer || pointer.id !== event.pointerId) return;
-      const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
-      if (!pointer.active && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 5) { this._pointer = null; return; }
-      if (!pointer.active && Math.abs(dx) > 5) {
-        pointer.active = true; this._suppressClick = true; track.setPointerCapture(event.pointerId);
+      const point = pointer && pointOf(event, pointer);
+      if (!point) return;
+      const dx = point.clientX - pointer.x, dy = point.clientY - pointer.y;
+      const thresholds = this.options.dragMinThreshold;
+      const threshold = typeof thresholds === 'object' ? thresholds[pointer.touch ? 'touch' : 'mouse'] ?? (pointer.touch ? 10 : 0) : pointer.touch ? +thresholds || 10 : 0;
+      if (!pointer.active && Math.max(Math.abs(dx), Math.abs(dy)) > threshold) {
+        if (Math.abs(dy) > Math.abs(dx)) { this._pointer = null; return; }
+        pointer.position = new DOMMatrix(getComputedStyle(list).transform).m41;
+        if (this._status === states.MOVING) {
+          // Normalize a clone transition without changing the visible position.
+          if (this.is('loop')) pointer.position += this._position(this.index) - this._position(this._dest);
+          clearTimeout(this._transitionTimer); this._completeMove?.();
+        }
+        pointer.active = true; this._suppressClick = true;
+        if (!pointer.touch) track.setPointerCapture(event.pointerId);
         clearInterval(this._interval); this.emit('drag');
       }
       if (pointer.active) {
-        event.preventDefault(); pointer.delta = dx;
-        list.style.transition = ''; list.style.transform = `translateX(${this._position(this.index) + dx}px)`;
+        if (event.cancelable) event.preventDefault();
+        let position = pointer.position + dx / this._scale();
+        pointer.exceeded = false;
+        if (!this.is('loop')) {
+          const limit = Math.max(this._position(this._end()), Math.min(position, this._position(0)));
+          pointer.exceeded = limit !== position;
+          position = limit + (position - limit) / 5;
+        }
+        pointer.current = position;
+        pointer.last = { x: point.clientX, time: event.timeStamp };
+        if (event.timeStamp - pointer.base.time > 200) {
+          pointer.previous = pointer.base; pointer.base = pointer.last;
+        }
+        list.style.transition = 'none'; list.style.transform = `translateX(${position}px)`;
         this.emit('dragging');
       }
-    }, { passive: false });
+    };
     const finish = event => {
       const pointer = this._pointer;
-      if (!pointer || pointer.id !== event.pointerId) return;
+      if (!pointer || !pointOf(event, pointer)) return;
       this._pointer = null;
+      if (!pointer.touch && track.hasPointerCapture(pointer.id)) track.releasePointerCapture(pointer.id);
       if (pointer.active) {
         this.emit('dragged');
         const old = this.index;
-        if (event.type !== 'pointercancel' && Math.abs(pointer.delta) > 20) {
-          const target = this._position(old) + pointer.delta;
+        if (!/cancel|lostpointercapture/.test(event.type)) {
+          // Splide's 200 ms sampling window, flick projection and page cap.
+          const base = pointer.base === pointer.last && pointer.previous || pointer.base;
+          const elapsed = event.timeStamp - base.time;
+          const velocity = !pointer.exceeded && elapsed > 0 && event.timeStamp - pointer.last.time < 200 ? (pointer.last.x - base.x) / elapsed / this._scale() : 0;
+          const target = pointer.current + Math.sign(velocity) * Math.min(Math.abs(velocity) * this.options.flickPower, (track.clientWidth - this._padLeft - this._padRight) * this.options.flickMaxPages);
           let nearest = old, distance = Infinity;
           for (const item of this._slides) {
             const delta = Math.abs(this._position(item.index) - target);
             if (delta < distance) { distance = delta; nearest = item.index; }
           }
-          this.go(nearest === old ? (pointer.delta < 0 ? '>' : '<') : nearest);
+          this.go(nearest, true);
+        } else {
+          this.go(old, true);
         }
-        if (old === this.index) this._layout();
-        setTimeout(() => { this._suppressClick = false; }, 0);
         this._autoplay();
       }
     };
+    this._cancelDrag = () => {
+      const pointer = this._pointer;
+      if (pointer) finish({ type: 'pointercancel', pointerId: pointer.id, changedTouches: [{ identifier: pointer.id }] });
+    };
+    this._bind(track, 'pointerdown', start);
+    this._bind(track, 'touchstart', start, { passive: true });
+    this._bind(window, 'pointermove', move, { passive: false });
+    this._bind(track, 'touchmove', move, { passive: false });
     this._bind(window, 'pointerup', finish);
     this._bind(window, 'pointercancel', finish);
+    this._bind(track, 'touchend', finish);
+    this._bind(track, 'touchcancel', finish);
+    this._bind(track, 'lostpointercapture', finish);
     this._bind(track, 'selectstart', event => { if (this._pointer) event.preventDefault(); });
     this._bind(track, 'dragstart', event => event.preventDefault());
   }
@@ -477,7 +578,7 @@ export default class Splide {
     this._saved.clear();
     this.root.classList.add('is-initialized');
     this._mounted = false; this._status = states.DESTROYED;
-    this._arrowButtons = null; this._arrowsMounted = false; this._pointer = null;
+    this._arrowButtons = null; this._arrowsMounted = false; this._pointer = null; this._completeMove = null; this._cancelDrag = null;
     if (completely) { window.removeEventListener('resize', this._resize); this._watching = false; }
     this.emit('destroy'); this._events = [];
     return this;
