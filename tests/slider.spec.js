@@ -139,8 +139,11 @@ test('breakpoint destroy and automatic remount', async ({ page }) => {
 
 test('pointer drag, cancellation and link clicks', async ({ page }) => {
   await setup(page);
-  await page.mouse.move(250, 60); await page.mouse.down();
-  await page.mouse.move(80, 60, { steps: 10 }); await page.mouse.up();
+  // Cross half the slide and release at rest so browser/CI timing cannot
+  // change the destination through flick velocity.
+  await page.mouse.move(550, 60); await page.mouse.down();
+  await page.mouse.move(80, 60, { steps: 10 });
+  await page.waitForTimeout(250); await page.mouse.up();
   await expect.poll(() => page.evaluate(() => slider.index)).toBe(1);
   expect(await page.evaluate(() => location.hash)).toBe('');
   await page.locator('.splide__slide').nth(1).locator('a').click();
