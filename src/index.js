@@ -228,25 +228,34 @@ export default class Splide {
     const { list } = this.Components.Elements;
     return list.getBoundingClientRect().width / parseFloat(getComputedStyle(list).width) || 1;
   }
-  _position(index) {
-    const { list, track, slides } = this.Components.Elements;
-    if (!slides.length) return 0;
-    const item = this._slides.find(item => item.index === index) || this._slides.find(item => item.index === this.index);
+  _measure() {
+    const { list, track } = this.Components.Elements;
     // Layout widths retain fractional precision without including visual transforms
     // on active cards. offsetLeft rounds; DOMRect includes scale/translate effects.
-    let offset = 0, total = 0, width = 0, gap = 0;
+    // Reuse one geometry snapshot throughout a drag instead of rescanning every
+    // card for both limits on each move and for every candidate on release.
+    this._geometry = new Map();
+    let total = 0, gap = 0;
     for (const child of list.children) {
       const style = getComputedStyle(child);
       if (style.display === 'none') continue;
       const size = parseFloat(style.width) || 0;
-      if (child === item.slide) { offset = total; width = size; }
+      this._geometry.set(child, [total, size]);
       gap = parseFloat(style.marginRight) || 0;
       total += size + gap;
     }
-    if (this.options.focus === 'center') offset -= (track.clientWidth - this._padLeft - this._padRight - width) / 2;
+    this._size = total - gap;
+    this._width = track.clientWidth;
+  }
+
+  _position(index) {
+    if (!this.length) return 0;
+    const item = this._slides.find(item => item.index === index) || this._slides.find(item => item.index === this.index);
+    let [offset, width] = this._geometry.get(item.slide) || [0, 0];
+    if (this.options.focus === 'center') offset -= (this._width - this._padLeft - this._padRight - width) / 2;
     else offset -= (Number(this.options.focus) || 0) * (width + this._gap);
     if (!this.is('loop') && this.options.trimSpace) {
-      offset = clamp(offset, Math.max(0, total - gap - track.clientWidth + this._padLeft + this._padRight));
+      offset = clamp(offset, Math.max(0, this._size - this._width + this._padLeft + this._padRight));
     }
     return -offset;
   }
@@ -267,6 +276,7 @@ export default class Splide {
       if (!options.autoWidth) slide.style.width = `calc((100% + ${unit(options.gap)}) / ${options.perPage} - ${unit(options.gap)})`;
     });
     this._gap = this._slides.length ? parseFloat(getComputedStyle(this._slides[0].slide).marginRight) || 0 : 0;
+    this._measure();
     this._index = clamp(this.index, this.is('loop') ? this.length - 1 : this._end());
     list.style.transition = '';
     list.style.transform = `translateX(${this._position(this.index)}px)`;
@@ -304,8 +314,11 @@ export default class Splide {
     if (next === this.index && !allowSameIndex) return this;
     clearTimeout(this._transitionTimer);
     const { list } = this.Components.Elements;
-    if (this.is('loop') && this._status === states.MOVING) {
-      const shift = this._position(this.index) - this._position(this._dest);
+    if (this.is('loop')) {
+      this._measure();
+      // As in Splide's Move.move(), shift equivalent copies before animating
+      // toward the original. Animating to an outer clone can expose empty space.
+      const shift = this._position(next) - this._position(dest);
       if (shift) {
         const position = new DOMMatrix(getComputedStyle(list).transform).m41;
         list.style.transition = 'none';
@@ -314,16 +327,19 @@ export default class Splide {
       }
     }
     const old = this.index;
-    this._dest = dest;
     this._index = next;
     this._status = states.MOVING;
     this.emit('move', next, old, dest);
+    this._measure();
     list.style.transition = `transform ${this.options.speed}ms ${this.options.easing}`;
-    list.style.transform = `translateX(${this._position(dest)}px)`;
+    list.style.transform = `translateX(${this._position(next)}px)`;
     const complete = () => {
       this._completeMove = null;
       if (!this._mounted) return;
-      list.style.transition = '';
+      this._measure();
+      // Clearing the duration leaves a running transform transition alive when
+      // its target is unchanged. Cancel it before measuring final visibility.
+      list.style.transition = 'none';
       list.style.transform = `translateX(${this._position(next)}px)`;
       this._status = states.IDLE;
       this._update();
@@ -475,10 +491,9 @@ export default class Splide {
         if (Math.abs(dy) > Math.abs(dx)) { this._pointer = null; return; }
         pointer.position = new DOMMatrix(getComputedStyle(list).transform).m41;
         if (this._status === states.MOVING) {
-          // Normalize a clone transition without changing the visible position.
-          if (this.is('loop')) pointer.position += this._position(this.index) - this._position(this._dest);
           clearTimeout(this._transitionTimer); this._completeMove?.();
         }
+        this._measure();
         pointer.active = true; this._suppressClick = true;
         if (!pointer.touch) track.setPointerCapture(event.pointerId);
         clearInterval(this._interval); this.emit('drag');
@@ -515,6 +530,7 @@ export default class Splide {
           const elapsed = event.timeStamp - base.time;
           const velocity = !pointer.exceeded && elapsed > 0 && event.timeStamp - pointer.last.time < 200 ? (pointer.last.x - base.x) / elapsed / this._scale() : 0;
           const target = pointer.current + Math.sign(velocity) * Math.min(Math.abs(velocity) * this.options.flickPower, (track.clientWidth - this._padLeft - this._padRight) * this.options.flickMaxPages);
+          this._measure();
           let nearest = old, distance = Infinity;
           for (const item of this._slides) {
             const delta = Math.abs(this._position(item.index) - target);

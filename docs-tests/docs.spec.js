@@ -109,3 +109,52 @@ test('native mobile swipes keep the multiple-slide demo responsive and allow pag
   expect(errors).toEqual([]);
   await cdp.detach();
 });
+
+test('centered mobile loop has no empty edge during fast repeated swipes', async ({ page, browserName }, testInfo) => {
+  test.skip(browserName !== 'chromium' || testInfo.project.name !== 'mobile', 'Native touch injection uses mobile Chromium CDP.');
+  const root = page.locator('#demo-center');
+  await root.scrollIntoViewIfNeeded();
+  const cdp = await page.context().newCDPSession(page);
+  for (const direction of [1, -1]) {
+    await root.evaluate((root, direction) => {
+      const slider = root.splide;
+      slider.options = { speed: 0 };
+      slider.go(direction > 0 ? slider.length - 1 : 0);
+      slider.options = { speed: 400 };
+      const coverage = window.coverage = { frames: 0, holes: [], moves: 0, running: true };
+      slider.on('move.coverage', () => coverage.moves++);
+      function sample() {
+        if (!coverage.running) return;
+        const box = slider.Components.Elements.track.getBoundingClientRect();
+        const cards = [...slider.Components.Elements.list.children].map(card => card.getBoundingClientRect());
+        const left = cards[0].left - box.left, right = box.right - cards.at(-1).right;
+        if (left > 17 || right > 17) coverage.holes.push({ left, right, index: slider.index });
+        coverage.frames++;
+        requestAnimationFrame(sample);
+      }
+      requestAnimationFrame(sample);
+    }, direction);
+    const box = await root.locator('.splide__track').boundingBox();
+    const x = box.x + (direction > 0 ? box.width - 12 : 12), y = box.y + box.height / 2;
+    for (let i = 0; i < 5; i++) {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+      for (const delta of [15, 55, 100, 150, 200]) {
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x - direction * delta, y }] });
+      }
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      // First inspect the almost-finished seam transition, then interrupt the
+      // remaining transitions with new gestures instead of awaiting IDLE.
+      await page.waitForTimeout(i === 0 ? 320 : 30);
+    }
+    await expect.poll(() => root.evaluate(root => root.splide.state.is(Splide.STATES.IDLE))).toBe(true);
+    const result = await root.evaluate(root => {
+      coverage.running = false;
+      root.splide.off('move.coverage');
+      return coverage;
+    });
+    expect(result.frames).toBeGreaterThan(10);
+    expect(result.moves).toBe(5);
+    expect(result.holes).toEqual([]);
+  }
+  await cdp.detach();
+});

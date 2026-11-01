@@ -42,12 +42,12 @@ async function compare(browser, options, scenario, count) {
     if (typeof expected === 'number') {
       expect(Math.abs(actual - expected), path).toBeLessThan(0.25);
     } else if (Array.isArray(expected)) {
-      expect(actual).toHaveLength(expected.length);
+      expect(actual, path).toHaveLength(expected.length);
       expected.forEach((value, i) => check(actual[i], value, `${path}[${i}]`));
     } else if (expected && typeof expected === 'object') {
-      expect(Object.keys(actual)).toEqual(Object.keys(expected));
+      expect(Object.keys(actual), path).toEqual(Object.keys(expected));
       for (const key in expected) check(actual[key], expected[key], `${path}.${key}`);
-    } else expect(actual).toEqual(expected);
+    } else expect(actual, path).toEqual(expected);
   }
   check(results[1], results[0]);
 }
@@ -139,13 +139,13 @@ test('tvist loop rapid navigation — clicks finish transitions and retain viewp
       });
       expect(holes).toEqual([]);
     }
-    await page.waitForTimeout(120);
+    await expect.poll(() => page.evaluate(() => slider.state.is(Splide.STATES.IDLE))).toBe(true);
     const moves = await page.evaluate(() => acceptedMoves);
     expect(moves.length).toBeGreaterThan(0);
     for (const [next, old] of moves) expect(next).toBe((old + 3) % 4);
     // Exact accepted click count is scheduler-dependent. Check stable geometry at a fixed final index.
     await page.evaluate(() => slider.go(2));
-    await page.waitForTimeout(120);
+    await expect.poll(() => page.evaluate(() => slider.index === 2 && slider.state.is(Splide.STATES.IDLE))).toBe(true);
     return state(page);
   }, 4);
 });

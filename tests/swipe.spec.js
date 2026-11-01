@@ -49,6 +49,40 @@ async function gesture(page, points, source = 'touch') {
 }
 
 for (const source of ['touch', 'mouse']) {
+  for (const direction of [-1, 1]) {
+    test(`${source}: centered loop keeps both neighbors at a fast flick destination (${direction})`, async ({ page }) => {
+      await freezeClock(page);
+      await mount(page, { type: 'loop', perPage: 1, focus: 'center', padding: 40 });
+      await page.evaluate(direction => {
+        slider.go(direction < 0 ? 0 : slider.length - 1);
+        slider.options = { speed: 400 };
+        window.moves = [];
+        slider.on('move', (next, old, dest) => moves.push({ next, old, dest }));
+      }, direction);
+      const start = direction > 0 ? 320 : 40;
+      await gesture(page, [[start, 60], [start - direction * 30, 60], [start - direction * 130, 60], [start - direction * 240, 60], [start - direction * 240, 60, 10]], source);
+      const target = await page.evaluate(() => {
+        // Inspect the animation's destination while its completion timer is still
+        // pending. Waiting for IDLE conceals the missing neighbor at the loop seam.
+        const { list, track } = slider.Components.Elements;
+        list.style.transition = 'none';
+        const box = track.getBoundingClientRect();
+        const cards = [...list.children].map(slide => ({ text: slide.textContent, box: slide.getBoundingClientRect() }));
+        return {
+          moving: slider.state.is(Splide.STATES.MOVING),
+          move: moves[0],
+          visible: cards.filter(card => card.box.right > box.left && card.box.left < box.right).map(card => card.text),
+        };
+      });
+      expect(target.moving).toBe(true);
+      expect(Math.abs(target.move.dest - target.move.old)).toBe(2);
+      const next = target.move.next;
+      expect(target.visible).toEqual([`Card ${(next + 9) % 10}`, `Card ${next}`, `Card ${(next + 1) % 10}`]);
+      await page.clock.runFor(400);
+      expect(await page.evaluate(() => slider.state.is(Splide.STATES.IDLE))).toBe(true);
+    });
+  }
+
   test(`${source}: quick flick uses Splide velocity and flickMaxPages`, async ({ page }) => {
     const results = [];
     for (const original of [true, false]) {
@@ -255,6 +289,42 @@ for (const source of ['touch', 'mouse']) {
     await gesture(page, [[330, 60], [300, 60], [200, 60, 250], [80, 60, 250], [80, 60, 250]], source);
     expect(await page.evaluate(() => slider.index)).toBe(2);
     expect(await page.locator('.splide__slide').nth(2).evaluate(el => el.getBoundingClientRect().left)).toBeCloseTo(0, 0);
+  });
+
+  test(`${source}: slow variable-width dragging and release follow Splide`, async ({ page }) => {
+    const results = [];
+    for (const original of [true, false]) {
+      await mount(page, { autoWidth: true, perPage: 1, focus: 0 }, original);
+      await page.addStyleTag({ content: [140, 220, 180, 280, 160, 240].map((width, i) => `.splide__slide:nth-child(6n+${i + 1}){width:${width}px}`).join('') });
+      await page.evaluate(() => { slider.refresh(); slider.go(1); });
+      const input = original && source === 'mouse' ? 'legacy' : source;
+      const position = () => page.locator('.splide__list').evaluate(list => new DOMMatrix(getComputedStyle(list).transform).m41);
+      await gesture(page, [[300, 60], [287, 60, 20, 'move']], input);
+      const positions = [];
+      for (const delta of [26, 39, 52, 65, 78, 91, 104, 117, 130]) {
+        await gesture(page, [[300 - delta, 60, 250, 'move']], input);
+        const x = await position();
+        expect(x).toBeCloseTo(-156 - delta, 0);
+        positions.push(x);
+      }
+      const { index } = await gesture(page, [[170, 60, 250, 'end']], input);
+      results.push({ positions, index, end: await position() });
+    }
+    expect(results[1].index).toBe(results[0].index);
+    expect(results[1].end).toBeCloseTo(results[0].end, 0);
+  });
+
+  test(`${source}: variable-width geometry refreshes before navigation and a new drag`, async ({ page }) => {
+    await mount(page, { autoWidth: true, perPage: 1, focus: 0 });
+    await page.locator('.splide__slide').evaluateAll(slides => slides.forEach(slide => { slide.style.width = '180px'; }));
+    await page.evaluate(() => slider.go(2));
+    const position = () => page.locator('.splide__list').evaluate(list => new DOMMatrix(getComputedStyle(list).transform).m41);
+    expect(await position()).toBeCloseTo(-392, 0);
+    // CSS may change independently of options/refresh, including between gestures.
+    await page.locator('.splide__slide').first().evaluate(slide => { slide.style.width = '240px'; });
+    await gesture(page, [[250, 60], [230, 60, 20, 'move'], [200, 60, 20, 'move'], [200, 60, 250, 'end']], source);
+    expect(await page.evaluate(() => slider.index)).toBe(2);
+    expect(await position()).toBeCloseTo(-452, 0);
   });
 
   test(`${source}: destroy during drag ignores late input and remount accepts one new gesture`, async ({ page }) => {

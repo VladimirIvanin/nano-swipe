@@ -1,6 +1,6 @@
 {
   "name": "nano-swipe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "type": "module",
   "description": "A compact, dependency-free JavaScript carousel",
   "main": "./dist/nano-swipe.cjs",

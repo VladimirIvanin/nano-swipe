@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { freezeClock } from './helpers/clock.js';
 
 async function mount(page, options = {}, width = 900) {
   await page.setViewportSize({ width, height: 700 });
@@ -50,6 +51,36 @@ test('interrupted loop crossing continues in the requested direction', async ({ 
   await expect.poll(() => page.evaluate(() => slider.state.is(Splide.STATES.IDLE))).toBe(true);
   expect(await page.evaluate(() => slider.index)).toBe(5);
 });
+
+for (const type of ['slide', 'loop']) {
+  test(`${type}: timer completion cancels an unfinished CSS transition before updating visibility`, async ({ page }) => {
+    await freezeClock(page);
+    await mount(page, { type, perPage: 2, perMove: 1, gap: 16, speed: 80 });
+    const paused = await page.evaluate(() => {
+      window.finished = [];
+      slider.on('moved', () => finished.push({
+        index: slider.index,
+        visible: slider.Components.Elements.slides.filter(slide => slide.classList.contains('is-visible')).map(slide => slide.dataset.card),
+      }));
+      slider.go(2);
+      const animation = slider.Components.Elements.list.getAnimations().find(animation => animation.transitionProperty === 'transform');
+      if (!animation) return false;
+      // Browser animation frames can lag behind the JS completion timer on a
+      // loaded runner. Hold the CSS transition behind that deadline explicitly.
+      animation.pause();
+      animation.currentTime = 0;
+      return true;
+    });
+    expect(paused).toBe(true);
+    await page.clock.runFor(80);
+    expect(await page.evaluate(() => ({
+      idle: slider.state.is(Splide.STATES.IDLE),
+      finished,
+      left: slider.Components.Elements.slides[2].getBoundingClientRect().left,
+      transitions: slider.Components.Elements.list.getAnimations().filter(animation => animation.transitionProperty === 'transform').length,
+    }))).toEqual({ idle: true, finished: [{ index: 2, visible: ['2', '3'] }], left: 0, transitions: 0 });
+  });
+}
 
 test('autoplay measures interval from transition start', async ({ page }) => {
   await mount(page, { type: 'loop', speed: 100, interval: 200, pauseOnHover: false, pauseOnFocus: false });
