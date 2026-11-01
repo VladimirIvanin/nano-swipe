@@ -27,10 +27,10 @@ npm run check:release
 npm run check:release
 npm run test:package
 npm pack --ignore-scripts
-npx --yes npm@11.21.1 publish ./nano-swipe-0.1.0.tgz --access public --auth-type=web
+npx --yes npm@11.21.1 publish ./nano-swipe-0.1.1.tgz --access public --auth-type=web
 ```
 
-Команда приведена для текущей версии 0.1.0. Для предварительной версии используйте соответствующее имя архива и добавьте `--tag next`.
+Команда приведена для текущей версии 0.1.1. Для предварительной версии используйте соответствующее имя архива и добавьте `--tag next`.
 
 После появления пакета доверенный репозиторий можно привязать через npm CLI 11.15 или новее. Команда открывает веб-подтверждение 2FA.
 
@@ -51,8 +51,8 @@ npx --yes npm@11.21.1 trust github nano-swipe --file publish.yml --repository Vl
 После первой публикации файлы доступны через jsDelivr и UNPKG. Всегда указывайте одинаковую версию для JS и CSS.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nano-swipe@0.1.0/browser-build/nano-swipe.css">
-<script defer src="https://cdn.jsdelivr.net/npm/nano-swipe@0.1.0/browser-build/nano-swipe.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nano-swipe@0.1.1/browser-build/nano-swipe.css">
+<script defer src="https://cdn.jsdelivr.net/npm/nano-swipe@0.1.1/browser-build/nano-swipe.min.js"></script>
 ```
 
-Эквивалентный путь UNPKG — `https://unpkg.com/nano-swipe@0.1.0/browser-build/nano-swipe.min.js`.
+Эквивалентный путь UNPKG — `https://unpkg.com/nano-swipe@0.1.1/browser-build/nano-swipe.min.js`.
