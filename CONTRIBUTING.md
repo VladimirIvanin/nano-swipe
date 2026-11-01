@@ -27,12 +27,18 @@ npm run check:release
 npm run check:release
 npm run test:package
 npm pack --ignore-scripts
-npm publish ./nano-swipe-0.1.0.tgz --access public
+npx --yes npm@11.21.1 publish ./nano-swipe-0.1.0.tgz --access public --auth-type=web
 ```
 
 Команда приведена для текущей версии 0.1.0. Для предварительной версии используйте соответствующее имя архива и добавьте `--tag next`.
 
-После появления пакета откройте его Settings → Trusted Publisher на npmjs.com и выберите GitHub Actions. Укажите пользователя `VladimirIvanin`, репозиторий `nano-swipe`, workflow `publish.yml`. Поле Environment оставьте пустым. Разрешите действие `npm publish`. Workflow получает временную авторизацию через OIDC. Настройку создавайте перед ближайшим выпуском, поскольку npm ограничивает срок её первичного подтверждения. [Настройка Trusted Publisher](https://docs.npmjs.com/trusted-publishers/)
+После появления пакета доверенный репозиторий можно привязать через npm CLI 11.15 или новее. Команда открывает веб-подтверждение 2FA.
+
+```sh
+npx --yes npm@11.21.1 trust github nano-swipe --file publish.yml --repository VladimirIvanin/nano-swipe --allow-publish --yes
+```
+
+Альтернативный путь — Settings → Trusted Publisher на npmjs.com. Выберите GitHub Actions, пользователя `VladimirIvanin`, репозиторий `nano-swipe`, workflow `publish.yml`. Поле Environment оставьте пустым. Разрешите действие `npm publish`. Workflow получает временную авторизацию через OIDC. Настройку создавайте перед ближайшим выпуском, поскольку npm ограничивает срок её первичного подтверждения. [Настройка Trusted Publisher](https://docs.npmjs.com/trusted-publishers/) · [Команда npm trust](https://docs.npmjs.com/cli/v11/commands/npm-trust/)
 
 Следующие выпуски
 
