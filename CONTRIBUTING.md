@@ -17,7 +17,7 @@ npm run check:release
 
 Однократная настройка GitHub Pages
 
-В репозитории `VladimirIvanin/nano-swipe` откройте Settings → Pages → Build and deployment и выберите Source → GitHub Actions. Workflow `deploy-docs.yml` проверяет и публикует документацию при обновлении `main`, публикации GitHub Release или ручном запуске. Адрес документации будет `https://vladimirivanin.github.io/nano-swipe/`.
+В репозитории `VladimirIvanin/nano-swipe` откройте Settings → Pages → Build and deployment и выберите Source → GitHub Actions. Workflow `deploy-docs.yml` проверяет и публикует документацию при обновлении `main` или ручном запуске из `main`. В окружении `github-pages` разрешите деплой из ветки `main`. Публикация GitHub Release запускает только workflow npm: документация уже опубликована при отправке коммита в `main`. Адрес документации будет `https://vladimirivanin.github.io/nano-swipe/`.
 
 Первая публикация npm-пакета
 
